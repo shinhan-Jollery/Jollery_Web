@@ -18,7 +18,13 @@
 	<dependencies>
 		<!-- MySQL -->
 		<!-- MySQL 디펜더시 추가 예정 -->
-
+		<!-- Jakarta Servlet API -->
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>5.0.0</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- Transaction -->
 		<dependency>
 			<groupId>org.springframework</groupId>
