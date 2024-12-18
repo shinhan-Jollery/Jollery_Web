@@ -10,7 +10,8 @@ public class PayController {
 	
 	@GetMapping("/tosspay.do")
 	public String tosspay() {
-		return "pay/tosspay.html";
+		System.out.println(1);
+		return "pay/tosspay";
 	}
 
 }
