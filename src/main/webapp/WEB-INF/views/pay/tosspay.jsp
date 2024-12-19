@@ -446,27 +446,25 @@
 	<script src="<c:url value='/resources/assets/js/vendor.min.js' />"></script>
 	<script src="<c:url value='/resources/assets/js/app.js' />"></script>
 <script>
-	document.getElementById("open-popup").addEventListener("click", function () {
-		// 팝업 크기 설정
-		const popupWidth = Math.min(window.innerWidth * 0.8, 1200); // 브라우저 창 너비의 80% 또는 최대 1200px
-		const popupHeight = Math.min(window.innerHeight * 0.8, 800); // 브라우저 창 높이의 80% 또는 최대 800px
+document.getElementById("open-popup").addEventListener("click", function () {
+    const popupWidth = Math.min(window.innerWidth * 0.8, 1200);
+    const popupHeight = Math.min(window.innerHeight * 0.8, 800);
+    const left = window.screenX + (window.innerWidth - popupWidth) / 2;
+    const top = window.screenY + (window.innerHeight - popupHeight) / 2;
 
-		// 팝업 위치 계산 (중앙 정렬)
-		const left = window.screenX + (window.innerWidth - popupWidth) / 2;
-		const top = window.screenY + (window.innerHeight - popupHeight) / 2;
+    console.log(`팝업 크기: width=${popupWidth}, height=${popupHeight}`);
+    console.log(`팝업 위치: left=${left}, top=${top}`);
 
-		// 팝업 열기
-		const popup = window.open(
-			"<c:url value='/resources/toss/checkout.jsp' />", // 팝업 URL
-			"결제 페이지",
-			`width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
-		);
+    const popup = window.open(
+        "<c:url value='/resources/toss/checkout.jsp' />",
+        "결제 페이지",
+        `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
+    );
 
-		// 팝업 창 확인
-		if (!popup || popup.closed || typeof popup.closed === "undefined") {
-			alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
-		}
-	});
+    if (!popup) {
+        alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
+    }
+});
 </script>
 
 
