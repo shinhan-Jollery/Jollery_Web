@@ -11999,12 +11999,6 @@ ul, ol {
   padding-bottom: 1.25rem; }
   .breadcrumbs.text-white {
     border-color: transparent; }
-.breadcrumbsTosspay {
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-  padding-bottom: 1.25rem; }
-  .breadcrumbs.text-white {
-    border-color: transparent; }
 
 .breadcrumb {
   display: inline-flex;
