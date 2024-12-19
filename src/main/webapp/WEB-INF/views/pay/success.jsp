@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -27,8 +30,8 @@
         <div class="p-grid-col text--right" id="paymentKey" style="white-space: initial; width: 250px"></div>
       </div>
       <div class="p-grid" style="margin-top: 30px">
-        <button class="button p-grid-col5" onclick="location.href='https://docs.tosspayments.com/guides/v2/payment-widget/integration';">연동 문서</button>
-        <button class="button p-grid-col5" onclick="location.href='https://discord.gg/A4fRFXQhRu';" style="background-color: #e8f3ff; color: #1b64da">실시간 문의</button>
+        <button class="button p-grid-col5" onclick="location.href='https://docs.tosspayments.com/guides/v2/payment-widget/integration';">주문 내역</button>
+        <button class="button p-grid-col5" onclick="location.href='https://discord.gg/A4fRFXQhRu';" style="background-color: #e8f3ff; color: #1b64da">홈으로 이동</button>
       </div>
     </div>
 
@@ -38,6 +41,7 @@
     </div>
 
     <script>
+    T
       // 쿼리 파라미터 값이 결제 요청할 때 보낸 데이터와 동일한지 반드시 확인하세요.
       // 클라이언트에서 결제 금액을 조작하는 행위를 방지할 수 있습니다.
       const urlParams = new URLSearchParams(window.location.search);

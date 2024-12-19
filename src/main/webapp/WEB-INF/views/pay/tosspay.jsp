@@ -103,27 +103,12 @@
 			</div>
 		</div>
 	</header>
-<!-- hero -->
-	<section class="hero hero-small bg-dark text-white py-5"></section>
-	<!-- breadcrumbs -->
-	<section class="breadcrumbs bg-light">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-							<li class="breadcrumb-item"><a href="listing-sidebar.html">Shop</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Product</li>
-						</ol>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</section>
+
 	<!-- main -->
 	<section class="breadcrumbs bg-light">
-	        <iframe src="<c:url value='/resources/toss/checkout.jsp' />" width="100%" height="800px" frameborder="0"></iframe>
+	 <button id="open-popup" class="btn btn-primary">결제하기
+	 </button>
+	    <%--     <iframe src="<c:url value='/resources/toss/checkout.jsp' />" width="100%" height="800px" frameborder="0"></iframe> --%>
 	</section>
 
 
@@ -460,5 +445,28 @@
 
 	<script src="<c:url value='/resources/assets/js/vendor.min.js' />"></script>
 	<script src="<c:url value='/resources/assets/js/app.js' />"></script>
+<script>
+document.getElementById("open-popup").addEventListener("click", function () {
+    const popupWidth = Math.min(window.innerWidth * 0.8, 1200);
+    const popupHeight = Math.min(window.innerHeight * 0.8, 800);
+    const left = window.screenX + (window.innerWidth - popupWidth) / 2;
+    const top = window.screenY + (window.innerHeight - popupHeight) / 2;
+
+    console.log(`팝업 크기: width=${popupWidth}, height=${popupHeight}`);
+    console.log(`팝업 위치: left=${left}, top=${top}`);
+
+    const popup = window.open(
+        "<c:url value='/resources/toss/checkout.jsp' />",
+        "결제 페이지",
+        `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
+    );
+
+    if (!popup) {
+        alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
+    }
+});
+</script>
+
+
 </body>
 </html>
