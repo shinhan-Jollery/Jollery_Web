@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinhan.emp">
+	<delete id="delete" parameterType="int">
+		delete from employees where
+		EMPLOYEE_ID = #{empid}
+	</delete>
+
+	<update id="update" parameterType="empVO">
+		update employees set
+		FIRST_NAME = #{first_name},
+		LAST_NAME =
+		#{last_name},
+		EMAIL = #{email},
+		PHONE_NUMBER = #{phone_number},
+		HIRE_DATE = #{hire_date},
+		JOB_ID = #{job_id},
+		SALARY = #{salary},
+		COMMISSION_PCT = #{commission_pct},
+
+		<if test="manager_id == -1">
+			MANAGER_ID = null,
+		</if>
+		<if test="manager_id != -1">
+			MANAGER_ID = #{manager_id},
+		</if>
+
+		<if test="department_id == -1">
+			DEPARTMENT_ID = null
+		</if>
+		<if test="department_id != -1">
+			DEPARTMENT_ID = #{department_id}
+		</if>
+
+		where EMPLOYEE_ID = #{employee_id}
+	</update>
+
+	<insert id="insert" parameterType="empVO">
+		insert into
+		employees(EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL,
+		PHONE_NUMBER,
+		HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID,
+		DEPARTMENT_ID)
+		values(
+		#{employee_id},
+		#{first_name},
+		#{last_name},
+		#{email},
+		#{phone_number},
+		#{hire_date},
+		#{job_id},
+		#{salary},
+		#{commission_pct},
+		<if test="manager_id == -1">
+			null
+		</if>
+		<if test="manager_id != -1">
+			#{manager_id},
+		</if>
+
+		<if test="department_id == -1">
+			null
+		</if>
+		<if test="department_id != -1">
+			#{department_id}
+		</if>
+		)
+	</insert>
+
+	<select id="selectById" parameterType="int" resultType="empVO">
+		select *
+		from employees where employee_id = #{EMPLOYEE_ID}
+	</select>
+
+	<select id="selectByCondition" parameterType="map"
+		resultType="empVO">
+		select *
+		from employees
+		where (-1= #{deptid} or department_id
+		= #{deptid})
+		and ('-1' = #{jobid} or job_id = #{jobid})
+		and salary >=
+		#{salary} and hire_date >= #{hdate}
+	</select>
+
+	<select id="selectBySalary" parameterType="double"
+		resultType="empVO">
+		select * from employees where salary >= #{salary}
+	</select>
+
+	<select id="selectByJob" parameterType="String"
+		resultType="empVO">
+		select * from employees
+		<if test="jobid != -1">
+			where job_id = #{jobid}
+		</if>
+	</select>
+
+	<select id="selectByDept" parameterType="int" resultType="empVO">
+		select
+		* from employees
+		<if test="deptid != -1">
+			where department_id = #{deptid}
+		</if>
+	</select>
+
+	<select id="selectJoin" parameterType="String"
+		resultType="com.shinhan.myapp.emp.EmpJoinDTO">
+		select employee_id, first_name, salary, department_name,
+		city,
+		country_name
+		from employees join departments using(department_id)
+		join
+		locations using(location_id)
+		join countries USING (country_id)
+		join jobs
+		using (job_id)
+		<if test="aa !='-1'">
+			where job_id = #{aa}
+		</if>
+	</select>
+
+	<select id="selectAllJob" resultType="jobVO">
+		select * from jobs
+	</select>
+
+	<select id="selectJoin2" parameterType="String" resultType="map">
+		select employee_id, first_name, salary, department_name, city,
+		country_name
+		from employees
+		join departments using(department_id)
+		join
+		locations using(location_id)
+		join countries USING (country_id)
+		where
+		job_id = #{aa}
+	</select>
+
+	<select id="selectAll" resultType="empVO">
+		select * from employees order
+		by 1
+	</select>
+
+	<select id="selectByArray" parameterType="java.util.List"
+		resultType="empVO">
+		select * from employees where department_id in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+		order by 1
+	</select>
+
+</mapper>

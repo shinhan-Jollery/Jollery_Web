@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinhan.account">
+	<update id="update1" parameterType="String">
+		update cust_account
+		set balance = balance + 1
+		where accountNo = #{aa}
+	</update>
+
+	<update id="update2">
+		update cust_account
+		set balance = balance - 1
+		where accountNo = '113' <!-- 오류문장으로 변경함(transaction연습) -->
+	</update>
+</mapper>
