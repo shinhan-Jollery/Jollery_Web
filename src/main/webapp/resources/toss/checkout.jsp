@@ -22,14 +22,6 @@
         <div id="payment-method"></div>
         <!-- 이용약관 UI -->
         <div id="agreement"></div>
-        <!-- 쿠폰 체크박스 -->
-        <div style="padding-left: 25px">
-          <div class="checkable typography--p">
-            <label for="coupon-box" class="checkable__label typography--regular"
-              ><input id="coupon-box" class="checkable__input" type="checkbox" aria-checked="true" /><span class="checkable__label-text">5,000원 쿠폰 적용</span></label
-            >
-          </div>
-        </div>
         <!-- 결제하기 버튼 -->
         <div class="result wrapper">
           <button class="button" id="payment-button" style="margin-top: 30px">
@@ -42,10 +34,9 @@
 
       async function main() {
         const button = document.getElementById("payment-button");
-        const coupon = document.getElementById("coupon-box");
         const amount = {
           currency: "KRW",
-          value: 50000,
+          value: 100,
         };
         // ------  결제위젯 초기화 ------
         // TODO: clientKey는 개발자센터의 결제위젯 연동 키 > 클라이언트 키로 바꾸세요.
@@ -80,23 +71,6 @@
         // @docs https://docs.tosspayments.com/reference/widget-sdk#renderagreement선택자-옵션
         await widgets.renderAgreement({ selector: "#agreement", variantKey: "AGREEMENT" });
 
-        // ------  주문서의 결제 금액이 변경되었을 경우 결제 금액 업데이트 ------
-        // @docs https://docs.tosspayments.com/sdk/v2/js#widgetssetamount
-        coupon.addEventListener("change", async function () {
-          if (coupon.checked) {
-            await widgets.setAmount({
-              currency: "KRW",
-              value: amount.value - 5000,
-            });
-
-            return;
-          }
-
-          await widgets.setAmount({
-            currency: "KRW",
-            value: amount,
-          });
-        });
 
         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
         // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrequestpayment
@@ -105,11 +79,11 @@
           // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
           await widgets.requestPayment({
             orderId: generateRandomString(),
-            orderName: "토스 티셔츠 외 2건",
-            successUrl: window.location.origin + "/success",
-            failUrl: window.location.origin + "/fail",
-            customerEmail: "customer123@gmail.com",
-            customerName: "김토스",
+            orderName: "상품 앞에서 받아와야됨",
+            successUrl: window.location.origin + "/jollery/pcpay/success",
+            failUrl: window.location.origin + "/jollery/pcpay/fail",
+            customerEmail: "customer123@gmail.com" ,
+            customerName: "김수한무거북이와두루미삼천갑자동방삭치치카포사리사리센타워리워리세브리깡무두셀라구름이허리케인에담벼락담벼락에서생원서생원에고양이고양이엔바둑이바둑이는돌돌이",
             customerMobilePhone: "01012341234",
           });
         });
