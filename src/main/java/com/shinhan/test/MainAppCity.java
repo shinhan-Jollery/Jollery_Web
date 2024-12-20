@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MainApp {
+public class MainAppCity {
     public static void main(String[] args) {
         // Spring 컨텍스트 로드
     	ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
