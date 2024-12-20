@@ -30,11 +30,20 @@ public class ExhibitionDao {
             Exhibition exhibition = new Exhibition();
             exhibition.setExhibitionId(rs.getInt("exhibition_ID"));
             exhibition.setExhibitionTitle(rs.getString("exhibition_title"));
+            exhibition.setExhibitionUniv(rs.getString("exhibition_univ"));  // 대학교 정보 매핑
+            exhibition.setExhibitionMajor(rs.getString("exhibition_major")); // 학과 정보 매핑
             exhibition.setExhibitionLocation(rs.getString("exhibition_location"));
             exhibition.setExhibitionLink(rs.getString("exhibition_link"));
             exhibition.setExhibitionPoster(rs.getString("exhibition_poster"));
-            exhibition.setExhibitionSchedule(rs.getString("exhibition_schedule"));
+            // 날짜는 LocalDate로 변환하여 설정
+            if (rs.getDate("exhibition_start_date") != null) {
+                exhibition.setExhibitionStartDate(rs.getDate("exhibition_start_date").toLocalDate());
+            }
+            if (rs.getDate("exhibition_end_date") != null) {
+                exhibition.setExhibitionEndDate(rs.getDate("exhibition_end_date").toLocalDate());
+            }
             return exhibition;
         }
     }
 }
+

@@ -17,11 +17,13 @@ public class MainApp {
         List<Exhibition> exhibitions = exhibitionDao.getAllExhibitions();
         for (Exhibition exhibition : exhibitions) {
             System.out.println("Title: " + exhibition.getExhibitionTitle());
+            System.out.println("University: " + exhibition.getExhibitionUniv());
+            System.out.println("Major: " + exhibition.getExhibitionMajor());
             System.out.println("Location: " + exhibition.getExhibitionLocation());
-            System.out.println("Schedule: " + exhibition.getExhibitionSchedule());
+            System.out.println("Start Date: " + exhibition.getExhibitionStartDate());
+            System.out.println("End Date: " + exhibition.getExhibitionEndDate());
             System.out.println("Link: " + exhibition.getExhibitionLink());
             System.out.println("-----------------------------------");
         }
     }
 }
-
