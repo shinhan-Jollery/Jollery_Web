@@ -1,5 +1,4 @@
 package com.shinhan.test;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +20,6 @@ public class ExhibitionDao {
     public void sellectAllExhibition() {
     	sqlSession.selectList(namespace + "selectAllExhibition");
 	}
+
 }
 
