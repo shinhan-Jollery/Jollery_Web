@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.shinhan.VO.MembersDTO"
+			alias="MembersVO" />
+		<typeAlias type="com.shinhan.VO.ArtsDTO" alias="ArtsVO" />
+		<typeAlias type="com.shinhan.VO.ChatsDTO" alias="ChatsVO" />
+		<typeAlias type="com.shinhan.VO.ChatRoomsDTO"
+			alias="ChatRoomsVO" />
+		<typeAlias type="com.shinhan.VO.CategoriesDTO"
+			alias="CategoriesVO" />
+		<typeAlias type="com.shinhan.VO.MiniCategoriesDTO"
+			alias="MiniCategoriesVO" />
+		<typeAlias type="com.shinhan.VO.ExhibitionsDTO"
+			alias="ExhibitionsVO" />
+		<typeAlias type="com.shinhan.VO.OrderItemsDTO"
+			alias="OrderItemsVO" />
+		<typeAlias type="com.shinhan.VO.OrdersDTO" alias="OrdersVO" />
+		<typeAlias type="com.shinhan.VO.CartsDTO" alias="CartsVO" />
+		<typeAlias type="com.shinhan.VO.BansDTO" alias="BansVO" />
+		<typeAlias type="com.shinhan.VO.LikesDTO" alias="LikesVO" />
+		<typeAlias type="com.shinhan.VO.AccountsDTO"
+			alias="AccountsVO" />
+
+	</typeAliases>
+</configuration>
