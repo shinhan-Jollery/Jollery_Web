@@ -66,6 +66,28 @@ h2 {
 	border: 1px solid #ddd;
 	margin-bottom: 5px;
 }
+.phone-row {
+	margin-right: 150px;
+	display: flex; /* Flexbox로 한 줄에 배치 */
+	gap: 10px; /* 각 요소 간격 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+
+.phone-row select, .phone-row input {
+	height: 38px; /* 높이를 통일 */
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.phone-row select {
+	width: 80px; /* 드롭다운 너비 고정 */
+}
+
+.phone-row input {
+	flex-grow: 1; /* 입력 필드가 남은 공간을 균등하게 차지 */
+}
 
 .form-group textarea {
 	resize: none;
@@ -116,7 +138,7 @@ h2 {
     background-color: #fff;
     cursor: pointer;
     border-radius: 4px; 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .address-row button:hover {
