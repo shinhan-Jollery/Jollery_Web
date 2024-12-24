@@ -12,6 +12,14 @@ public class PayController {
 	public String tosspay() {
 		return "pay/tosspay";
 	}
+	@GetMapping("/tosspay.do1")
+	public String tosspay1() {
+		return "error/error";
+	}
+	@GetMapping("/tosspay.do2")
+	public String tosspay2() {
+		return "main/main";
+	}
 ////	@GetMapping("/success")
 ////	public String successToss() {
 ////		

@@ -447,18 +447,17 @@
 	<script src="<c:url value='/resources/assets/js/app.js' />"></script>
 <script>
 document.getElementById("open-popup").addEventListener("click", function () {
-    const popupWidth = Math.min(window.innerWidth * 0.8, 1200);
-    const popupHeight = Math.min(window.innerHeight * 0.8, 800);
+    const popupWidth = Math.min(window.innerWidth *0.8, 1500);
+    const popupHeight = Math.min(window.innerHeight * 0.8, 1500);
     const left = window.screenX + (window.innerWidth - popupWidth) / 2;
     const top = window.screenY + (window.innerHeight - popupHeight) / 2;
-
-    console.log(`팝업 크기: width=${popupWidth}, height=${popupHeight}`);
-    console.log(`팝업 위치: left=${left}, top=${top}`);
+    console.log(window.innerWidth*0.8);
+    console.log(`팝업 위치: left=\${left}, top=\${top}`);
 
     const popup = window.open(
         "<c:url value='/resources/toss/checkout.jsp' />",
         "결제 페이지",
-        `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
+        `width=\${popupWidth},height=\${popupHeight},top=\${top},left=\${left},resizable=yes`
     );
 
     if (!popup) {
