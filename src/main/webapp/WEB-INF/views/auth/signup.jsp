@@ -397,61 +397,64 @@ label {
 		</div>
 	</main>
 <script>
-document.getElementById("signup-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // 폼 기본 제출 방지
+document.getElementById("signup-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // 기본 폼 제출 동작 방지
 
-    // 폼 데이터 수집
-    const formData = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value,
-        confirmPassword: document.getElementById("confirm-password").value,
-        name: document.getElementById("name").value,
-        emailPrefix: document.getElementById("email-prefix").value,
-        emailDomain: document.getElementById("email-domain").value || document.getElementById("custom-email-domain").value,
-        termsAgree: document.getElementById("terms-agree").checked,
-        privacyAgree: document.getElementById("privacy-agree").checked,
-        marketingAgree: document.getElementById("marketing-agree").checked
+    // 폼 데이터 가져오기
+    const formData = new FormData(this);
+
+    // 전화번호 조합
+    const phonePart1 = formData.get("phone-part1");
+    const phonePart2 = formData.get("phone-part2");
+    const phonePart3 = formData.get("phone-part3");
+    const phone = `\${phonePart1}-\${phonePart2}-\${phonePart3}`;
+
+    // 이메일 조합
+    const emailPrefix = formData.get("email-prefix");
+    let emailDomain = formData.get("email-domain");
+    if (emailDomain === "custom") {
+        emailDomain = formData.get("custom-email-domain");
+    }
+    const addressLine1 = formData.get("address-line1"); // 도로명 주소
+    const addressLine2 = formData.get("address-line2"); // 상세 주소
+    const address = `\${addressLine1} \${addressLine2}`.trim(); // 공백 제거
+    
+    const email = `\${emailPrefix}@\${emailDomain}`;
+
+
+    const jsonData = {
+        username: formData.get("username"),
+        password: formData.get("password"),
+        confirmPassword: formData.get("confirm-password"),
+        name: formData.get("name"),
+        address: `\${formData.get("address-line1")} \${formData.get("address-line2")}`,
+        phone: phone,
+        emailPrefix: emailPrefix,
+        emailDomain: emailDomain,
+        termsAgree: formData.get("termsAgree") === "on",
+        privacyAgree: formData.get("privacyAgree") === "on",
+        marketingAgree: formData.get("marketingAgree") === "on"
     };
-	console.log(JSON.stringify(formData));
-    // JSON 데이터 전송
+
+    console.log(jsonData);
+
+
     fetch("/jollery/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(jsonData)
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("서버 응답 오류");
-        }
-    })
-    .then(data =>  {
-        console.log("서버 응답:", data);
-        
-        // 서버 응답이 success인 경우 페이지 이동
-        if (data.status === "success") {
-            alert("회원가입을 환영합니다"); // 성공 메시지 출력
-            window.location.href = "/jollery/main.do"; // 이동할 페이지 경로 설정
-        } else {
-            alert("회원가입 실패: " + data.message); // 실패 메시지 출력
-        }
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        alert(data.status === "success" ? "회원가입 성공!" : "회원가입 실패!");
     })
     .catch(error => {
-        console.error("오류 발생:", error);
+        console.error(error);
+        alert("오류가 발생했습니다.");
     });
-});
-
-// 이메일 도메인 선택 시 직접 입력 필드 표시
-document.getElementById("email-domain").addEventListener("change", function () {
-    const customField = document.getElementById("custom-email-domain");
-    if (this.value === "") { // '직접 입력' 선택 시
-        customField.style.display = "block";
-    } else {
-        customField.style.display = "none";
-    }
 });
 </script>
 	<!-- footer -->
