@@ -18,8 +18,7 @@
 		exhibition_link, exhibition_poster,
 		exhibition_start_date, exhibition_end_date)
 		VALUES
-		(#{exhibition_title}, #{exhibition_univ}, #{exhibition_major}
-		,
+		(#{exhibition_title}, #{exhibition_univ}, #{exhibition_major},
 		#{exhibition_location}, #{exhibition_link},
 		#{exhibition_poster},
 		#{exhibition_start_date}, #{exhibition_end_date})
