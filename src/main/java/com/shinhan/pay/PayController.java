@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pcpay")
 public class PayController {
 	
-	@GetMapping("/tosspay.do")
+	@GetMapping("/tosspay")
 	public String tosspay() {
 		return "pay/tosspay";
 	}
-	@GetMapping("/tosspay.do1")
+	@GetMapping("/tosspay1")
 	public String tosspay1() {
 		return "error/error";
 	}
-	@GetMapping("/tosspay.do2")
+	@GetMapping("/tosspay2")
 	public String tosspay2() {
 		return "main/main";
 	}
