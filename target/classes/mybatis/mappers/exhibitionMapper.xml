@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.shinhan.test">
+<mapper namespace="com.shinhan.exhibition">
 	<!-- test mapper -->
 
 	<select id="selectAllExhibition" resultType="exhibitionsVO">
@@ -18,8 +18,7 @@
 		exhibition_link, exhibition_poster,
 		exhibition_start_date, exhibition_end_date)
 		VALUES
-		(#{exhibition_title}, #{exhibition_univ}, #{exhibition_major}
-		,
+		(#{exhibition_title}, #{exhibition_univ}, #{exhibition_major},
 		#{exhibition_location}, #{exhibition_link},
 		#{exhibition_poster},
 		#{exhibition_start_date}, #{exhibition_end_date})
