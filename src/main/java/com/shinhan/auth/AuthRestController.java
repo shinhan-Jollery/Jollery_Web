@@ -21,7 +21,7 @@ public class AuthRestController {
 
     @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
     public ResponseEntity<String> register(@RequestBody Map<String, Object> requestBody) {
-        // JSON 데이터를 MembersDTO로 변환
+        // JSON DTO로 변환
     	System.out.println(requestBody);
     	MembersDTO member = MembersDTO.builder()
     		    .member_login_id((String) requestBody.get("username"))
@@ -32,7 +32,7 @@ public class AuthRestController {
     		    .member_address((String) requestBody.get("address"))
     		    .build();
 
-        // 생년월일 처리 (문자열 -> Date 변환)
+        // 생년월일 처리  front에 없음
         String birthDateStr = (String) requestBody.get("birth");
         if (birthDateStr != null) {
             try {
@@ -44,14 +44,14 @@ public class AuthRestController {
             }
         }
 
-        // 회원 유형 처리 (artist 여부)
+        // 판매자 여부 조회인데 여기서 필요 없기때문에 null 방지용
         Boolean isArtist = (Boolean) requestBody.get("isArtist");
-        member.setMember_is_artist(isArtist != null && isArtist ? "Y" : "N");
+        member.setMember_is_artist(isArtist != null && isArtist ? "1" : "0");
 
-        // 회원 추가 로직 실행
+        //db에 전달 제약조건은 전부 front에서 처리
         boolean isSuccess = authService.addMember(member);
 
-        // 결과 반환
+        // 실행결과 반환
         if (isSuccess) {
             return ResponseEntity.ok("{\"status\":\"success\"}");
         } else {

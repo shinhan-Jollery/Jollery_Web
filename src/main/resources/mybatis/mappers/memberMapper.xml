@@ -26,7 +26,7 @@
             '0'
         )
     </insert>
-        <!--  회원 조회 (-->
+
     <!-- 단일 회원 조회 -->
     <select id="selectMemberByid" parameterType="int" resultType="com.shinhan.VO.MembersDTO">
         SELECT * 
