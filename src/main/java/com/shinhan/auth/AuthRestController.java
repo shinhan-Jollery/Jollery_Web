@@ -1,9 +1,8 @@
 package com.shinhan.auth;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,26 +17,40 @@ import com.shinhan.VO.MembersDTO;
 @RequestMapping("/auth")
 public class AuthRestController {
 
-    @Autowired
-    private AuthService authService;
-    
-    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<String> login(@RequestBody Map<String, Object> requestBody, HttpSession session) {
+	 @Autowired
+	    private AuthService authService;
 
-        String username = (String) requestBody.get("username");
-        String password = (String) requestBody.get("password");
+	    // JWT 비밀 키 (서버에서 안전하게 관리)
+	    private static final String SECRET_KEY = "your-secret-key";
 
-        // 로그인 
-        MembersDTO user = authService.loginMember(username, password);
-        if (user.getMember_name() != null) {
-            // 인증 성공하고 세션에 저장
-            session.setAttribute("loggedInUser", user.getMember_name());
-            return ResponseEntity.ok("{\"status\":\"success\", \"message\":\"로그인 성공\"}");
-        } else {
-            // 인증 실패
-            return ResponseEntity.badRequest().body("{\"status\":\"fail\", \"message\":\""+user.getMember_is_artist()+"\"}");
-        }
-    }
+	    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
+	    public ResponseEntity<String> login(@RequestBody Map<String, Object> requestBody) {
+
+	        String username = (String) requestBody.get("username");
+	        String password = (String) requestBody.get("password");
+
+	        // 로그인
+	        MembersDTO user = authService.loginMember(username, password);
+
+	        if (user.getMember_name() != null) {
+	            // JWT 생성
+	            String token = Jwts.builder()
+	                    .setSubject(user.getMember_name()) // 사용자 이름을 Subject로 설정
+	                    .claim("userId", user.getMember_id()) // 추가 클레임 (예: 사용자 ID)
+	                    .claim("isArtist", user.getMember_is_artist()) // 추가 클레임 (예: 아티스트 여부)
+	                    .setIssuedAt(new Date()) // 발급 시간
+	                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 만료 시간 (1시간)
+	                    .signWith(SignatureAlgorithm.HS256, SECRET_KEY) // 서명 알고리즘 및 키 설정
+	                    .compact();
+
+	            // JWT 반환
+	            return ResponseEntity.ok("{\"status\":\"success\", \"message\":\"로그인 성공\", \"token\":\"" + token + "\"}");
+	        } else {
+	            // 인증 실패
+	            return ResponseEntity.badRequest().body("{\"status\":\"fail\", \"message\":\"" + user.getMember_is_artist() + "\"}");
+	        }
+	    }
+	}
     
 
     @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
