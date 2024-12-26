@@ -28,10 +28,10 @@
     </insert>
 
     <!-- 단일 회원 조회 -->
-    <select id="selectMemberByid" parameterType="int" resultType="com.shinhan.VO.MembersDTO">
+    <select id="selectMemberById" parameterType="string" resultType="com.shinhan.VO.MembersDTO">
         SELECT * 
         FROM members 
-        WHERE member_id = #{member_id}
+        WHERE member_login_ID = #{member_login_ID}
     </select>
 
     <!-- 모든 회원 조회 -->

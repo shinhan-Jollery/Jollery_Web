@@ -398,18 +398,18 @@ label {
 	</main>
 <script>
 document.getElementById("signup-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // 기본 폼 제출 동작 방지
+    event.preventDefault();
 
-    // 폼 데이터 가져오기
+    // 폼 데이터
     const formData = new FormData(this);
 
-    // 전화번호 조합
+    // 전화번호
     const phonePart1 = formData.get("phone-part1");
     const phonePart2 = formData.get("phone-part2");
     const phonePart3 = formData.get("phone-part3");
     const phone = `\${phonePart1}-\${phonePart2}-\${phonePart3}`;
 
-    // 이메일 조합
+    // 이메일 
     const emailPrefix = formData.get("email-prefix");
     let emailDomain = formData.get("email-domain");
     if (emailDomain === "custom") {
@@ -523,14 +523,12 @@ document.getElementById("signup-form").addEventListener("submit", function(event
 
         new daum.Postcode({
             oncomplete: function(data) {
-                // 도로명 주소와 지번 주소 가져오기
-                const roadAddr = data.roadAddress; // 도로명 주소
-                const jibunAddr = data.jibunAddress; // 지번 주소
-                
-                // 도로명 주소 또는 지번 주소를 address-line1에 설정
+                // 도로명 주소 or 지번 주소 
+                const roadAddr = data.roadAddress; // 도로명
+                const jibunAddr = data.jibunAddress; // 지번
                 document.getElementById('address-line1').value = roadAddr || jibunAddr;
 
-                // 상세 주소 입력 필드로 포커스 이동
+                // 상세 주소 입력으로 focus
                 document.getElementById('address-line2').focus();
             }
         }).open({

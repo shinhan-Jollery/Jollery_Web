@@ -24,6 +24,10 @@ public class AuthController {
 	public String signup() {
 		return "auth/signup";
 	}
+	@GetMapping("/login")
+	public String login() {
+		return "auth/login";
+	}
 	
 	
 
