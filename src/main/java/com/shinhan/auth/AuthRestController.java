@@ -23,7 +23,8 @@ public class AuthRestController {
     
     @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
     public ResponseEntity<String> login(@RequestBody Map<String, Object> requestBody, HttpSession session) {
-
+    	
+    	int userid = (Integer) requestBody.get("memberid");
         String username = (String) requestBody.get("username");
         String password = (String) requestBody.get("password");
 
