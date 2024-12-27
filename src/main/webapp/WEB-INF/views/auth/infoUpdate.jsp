@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="row">
 				<nav class="navbar navbar-expand-lg navbar-dark">
-					<a href="index.html" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
+					<a href="/jollery/main.do" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
 					<button class="navbar-toggler order-2" type="button"
 						data-toggle="collapse" data-target=".navbar-collapse"
 						aria-controls="navbarMenu" aria-expanded="false"
@@ -134,14 +134,13 @@
 				<aside class="col-lg-3">
 					<div class="nav nav-pills flex-column lavalamp" id="sidebar-1"
 						role="tablist">
-						<a class="nav-link" href="auth/infoUpdate"
-							role="tab" aria-controls="sidebar-1-1">회원정보</a> <a
-							class="nav-link" data-toggle="tab" href="#sidebar-1-2" role="tab"
+						<a class="nav-link" href="auth/infoUpdate" role="tab"
+							aria-controls="sidebar-1-1">회원정보</a> <a class="nav-link"
+							data-toggle="tab" href="#sidebar-1-2" role="tab"
 							aria-controls="sidebar-1-2">주문내역</a> <a class="nav-link"
-							href="/jollery/like.do" role="tab"
-							aria-controls="sidebar-1-3">관심상품</a> <a class="nav-link"
-							data-toggle="tab" href="#sidebar-1-4" role="tab"
-							aria-controls="sidebar-1-4">판매자 인증</a>
+							href="/jollery/like.do" role="tab" aria-controls="sidebar-1-3">관심상품</a>
+						<a class="nav-link" data-toggle="tab" href="#sidebar-1-4"
+							role="tab" aria-controls="sidebar-1-4">판매자 인증</a>
 					</div>
 
 				</aside>
@@ -153,7 +152,7 @@
 				<button type="button" id="passwordModalTrigger" data-toggle="modal"
 					data-target="#passwordModal" style="display: none;"></button>
 
-				<!-- Modal -->
+				<!-- 비밀번호 확인 모달 -->
 				<div class="modal fade" id="passwordModal" tabindex="-1"
 					role="dialog" aria-labelledby="passwordModalLabel"
 					aria-hidden="true">
@@ -172,12 +171,16 @@
 										<label for="password">비밀번호</label> <input type="password"
 											class="form-control" id="password" name="password" required>
 									</div>
-									<button type="submit" class="btn btn-primary">확인</button>
+									<button type="submit" class="btn btn-primary"
+										id="submitPasswordCheck">확인</button>
 								</form>
+								<div id="passwordCheckError" style="display: none; color: red;">비밀번호가
+									올바르지 않습니다.</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 				<script>
 				document.addEventListener("DOMContentLoaded", function () {
 				    const modalTrigger = document.getElementById("passwordModalTrigger");
@@ -185,32 +188,101 @@
 				        modalTrigger.click(); // 자동으로 모달 트리거 클릭
 				    }
 				});
-				document.getElementById('submitPasswordCheck').addEventListener('click', function() {
-					  const password = document.getElementById('password').value;
+				
+				document.addEventListener("DOMContentLoaded", function () {
+				    // 비밀번호 확인 폼 제출 이벤트 처리
+				    document.getElementById('passwordCheckForm').addEventListener('submit', function (event) {
+				        event.preventDefault(); // 폼 제출 시 페이지 리로드 방지
+				        const password = document.getElementById('password').value;
 
-					  // AJAX 요청으로 비밀번호 확인
-					  fetch('/auth/checkPassword', {
-					    method: 'POST',
-					    headers: {
-					      'Content-Type': 'application/json',
-					    },
-					    body: JSON.stringify({ password }),
-					  })
-					  .then(response => response.json())
-					  .then(data => {
-					    if (data.success) {
-					      // 비밀번호가 맞으면 모달 닫고 수정 페이지로 이동
-					      $('#passwordCheckModal').modal('hide');
-					      window.location.href = '/auth/updateInfo';
-					    } else {
-					      // 비밀번호가 틀리면 에러 메시지 표시
-					      document.getElementById('passwordCheckError').style.display = 'block';
-					    }
-					  })
-					  .catch(error => console.error('Error:', error));
-					});
+				        // 콘솔에 비밀번호가 잘 전달되고 있는지 확인
+				        console.log("입력된 비밀번호:", password);
+
+				        // 오류 메시지를 초기화 (처음에는 숨김)
+				        const errorElement = document.getElementById('passwordCheckError');
+				        errorElement.style.display = 'none'; // 오류 메시지 숨기기
+
+				        // AJAX 요청으로 비밀번호 확인
+				        fetch('/jollery/api/auth/pwCheck', {
+				            method: 'POST',
+				            headers: {
+				                'Content-Type': 'application/json',
+				            },
+				            body: JSON.stringify({ password })
+				        })
+				            .then(response => {
+				                if (!response.ok) {
+				                    throw new Error("HTTP 상태 코드 오류: " + response.status);
+				                }
+				                return response.json();
+				            })
+				            .then(data => {
+				                console.log("응답 데이터:", data); // 응답 데이터를 콘솔로 확인
+				                if (data.success) {
+				                    // 비밀번호가 맞으면 모달 닫고 사용자 정보 로드
+				                    $('#passwordModal').modal('hide'); // Bootstrap 모달 닫기
+
+				                    // 사용자 정보를 로드하는 함수 호출
+				                    loadProfileData();
+				                } else {
+				                    // 비밀번호가 틀리면 에러 메시지 표시
+				                    errorElement.style.display = 'block'; // 오류 메시지 보이기
+				                    errorElement.textContent = '비밀번호가 일치하지 않습니다.'; // 오류 메시지 내용 설정
+				                }
+				            })
+				            .catch(error => console.error("에러 발생:", error));
+				    });
+				});
+
+				// 사용자 정보를 불러오는 함수
+				function loadProfileData() {
+				    fetch("/jollery/api/auth/profile", {
+				        method: "GET",
+				        headers: {
+				            "Content-Type": "application/json",
+				        },
+				    })
+				        .then(response => {
+				            if (!response.ok) {
+				                throw new Error("HTTP 상태 코드 오류: " + response.status);
+				            }
+				            return response.json();
+				        })
+				        .then(data => {
+				            if (data.success) {
+				                const profile = data.data;
+								console.log(profile);
+				                // 데이터 로드 후, 필드에 채우기
+				                document.getElementById("username").value = profile.member_id;
+				                document.getElementById("name").value = profile.member_name;
+				                document.getElementById("address-line1").value = profile.member_address;
+				                
+				                const timestamp = 655484400000; // 서버에서 넘어온 타임스탬프
+				                const date = new Date(timestamp); // 타임스탬프를 Date 객체로 변환
+				             	// YYYY-MM-DD 형식으로 변환
+				                const formattedDate = date.toISOString().split("T")[0];
+				                document.getElementById("birthdate").value = formattedDate;
+				                
+				                const phoneParts = profile.member_phone.split("-");
+				                document.getElementById("phone-part1").value = phoneParts[0];
+				                document.getElementById("phone-part2").value = phoneParts[1];
+				                document.getElementById("phone-part3").value = phoneParts[2];
+				                
+				                const emailParts = profile.member_email.split("@");
+				                document.getElementById("email-prefix").value = emailParts[0];
+				                document.getElementById("email-domain").value = emailParts[1];
+
+				                // 사용자 정보가 로드되었으므로 정보 영역을 보이도록 설정
+				                document.getElementById("profile-container").style.display = "block";
+				            } else {
+				                console.error("회원 정보 조회 실패:", data.message);
+				            }
+				        })
+				        .catch(error => console.error("에러 발생:", error));
+				}
 
 				</script>
+
 
 
 				<!-- content -->
@@ -219,21 +291,21 @@
 						<div class="col">
 							<div class="tab-content" id="myTabContent">
 
-								<!-- profile -->
+								<!-- 회원정보입력칸 -->
 								<div class="container-signup">
 									<form id="signup-form">
 										<!-- 아이디 -->
 										<div class="form-group">
 											<label for="username">아이디*</label> <input type="text"
 												id="username" name="username" class="form-control"
-												placeholder="영문소문자/숫자, 4~16자" required>
+												placeholder="아이디" readonly>
 										</div>
 
 										<!-- 비밀번호 -->
 										<div class="form-group">
 											<label for="password">비밀번호*</label> <input type="password"
 												id="password" name="password" class="form-control"
-												placeholder="영문 대소문자/숫자/특수문자 중 조합, 8~16자" required>
+												placeholder="영문 대소문자/숫자/특수문자 중 조합, 8~16자">
 										</div>
 
 										<!-- 비밀번호 확인 -->
@@ -241,14 +313,20 @@
 											<label for="confirm-password">비밀번호 확인*</label> <input
 												type="password" id="confirm-password"
 												name="confirm-password" class="form-control"
-												placeholder="비밀번호를 다시 입력하세요" required>
+												placeholder="비밀번호를 다시 입력하세요">
 										</div>
 
 										<!-- 이름 -->
 										<div class="form-group">
 											<label for="name">이름*</label> <input type="text" id="name"
-												name="name" class="form-control" placeholder="이름을 입력하세요"
-												required>
+												name="name" class="form-control" placeholder="이름">
+										</div>
+
+										<!-- 생년월일 -->
+										<div class="form-group">
+											<label for="birthdate">생년월일*</label> <input type="date"
+												id="birthdate" name="birthdate" class="form-control"
+												placeholder="생년월일">
 										</div>
 
 										<!-- 주소 -->
@@ -256,13 +334,12 @@
 											<label for="address-line1">주소 *</label>
 											<div style="display: flex; align-items: center; gap: 10px;">
 												<input type="text" id="address-line1" name="address-line1"
-													class="form-control" placeholder="도로명 주소를 입력하세요"
-													style="flex: 1;">
+													class="form-control" placeholder="도로명 주소" style="flex: 1;">
 												<button type="button" class="btn btn-secondary"
 													onclick="execDaumPostcode()">우편번호 검색</button>
 											</div>
 											<input type="text" id="address-line2" name="address-line2"
-												class="form-control" placeholder="상세 주소를 입력하세요"
+												class="form-control" placeholder="상세 주소"
 												style="margin-top: 10px;">
 										</div>
 
@@ -318,23 +395,136 @@
 																});
 											</script>
 										</div>
+										<br>
 
-										<!-- 제출 버튼 -->
-										<button type="submit" class="btn btn-light">회원정보수정</button>
-										<button type="submit" class="btn btn-light">회원삭제</button>
+										<!-- 회원 수정 버튼 -->
+										<button type="button" class="btn btn-light"
+											id="updateMemberBtn">회원정보수정</button>
+										<script>
+									    document.addEventListener('DOMContentLoaded', function () {
+									        document.getElementById('updateMemberBtn').addEventListener('click', function () {
+									            // 요소 확인 후 처리
+									            const getValue = (id) => {
+									                const element = document.getElementById(id);
+									                return element ? element.value : null;
+									            };
+									        
+									            const phonePart1 = getValue('phone-part1');
+									            const phonePart2 = getValue('phone-part2');
+									            const phonePart3 = getValue('phone-part3');
+									            const phone = `\${phonePart1}-\${phonePart2}-\${phonePart3}`;
+
+									            const emailPrefix = getValue('email-prefix');
+									            const emailDomain = getValue('email-domain');
+									            const email = `\${emailPrefix}@\${emailDomain}`;
+
+									          
+
+									            // 서버로 보낼 데이터 구성
+									            const memberData = {
+									                member_password: getValue('password'),
+									                member_name: getValue('name'),
+									                member_birth: getValue('birthdate'),
+									                member_phone: phone,
+									                member_address: getValue('address'),
+									                member_email: email
+									            };
+									
+									            // 데이터 전송
+									            fetch('/jollery/api/auth/infoUpdate', {
+									                method: 'PUT',
+									                headers: {
+									                    'Content-Type': 'application/json',
+									                },
+									                body: JSON.stringify(memberData),
+									            })
+									                .then((response) => response.json())
+									                .then((data) => {
+									                    if (data.success) {
+									                        alert('회원 정보가 수정되었습니다.');
+									                    } else {
+									                        alert('회원 정보 수정에 실패했습니다.');
+									                    }
+									                })
+									                .catch((error) => {
+									                    console.error('에러 발생:', error);
+									                    alert('서버와의 통신에 실패했습니다.');
+									                });
+									        });
+									    });
+									</script>
+
+										<!-- 회원 삭제 버튼 -->
+										<button type="button" class="btn btn-light"
+											id="deleteMemberBtn">회원 삭제</button>
+										<script>
+										document.addEventListener("DOMContentLoaded", function () {
+										    // 회원 삭제 버튼 클릭 이벤트 처리
+										    document.getElementById('deleteMemberBtn').addEventListener('click', function () {
+										        // 비밀번호 확인 요청 (예: 이미 비밀번호 확인 모달에서 비밀번호 입력받음)
+										        const password = prompt('비밀번호를 입력하세요');  // 비밀번호 입력 받는 예시 (보안상 비추천, 보완 필요)
+
+										        if (!password) {
+										            alert('비밀번호를 입력해야 합니다.');
+										            return;
+										        }
+
+										        // 비밀번호 확인 (아래는 예시 API 호출)
+										        fetch('/jollery/api/auth/pwCheck', {
+										            method: 'POST',
+										            headers: {
+										                'Content-Type': 'application/json',
+										            },
+										            body: JSON.stringify({ password })
+										        })
+										        .then(response => {
+										            if (!response.ok) {
+										                throw new Error("비밀번호 확인 오류");
+										            }
+										            return response.json();
+										        })
+										        .then(data => {
+										            if (data.success) {
+										                // 비밀번호 확인 후 회원 삭제 요청
+										                fetch('/jollery/api/auth/delete', {
+										                    method: 'DELETE',
+										                    headers: {
+										                        'Content-Type': 'application/json',
+										                    }
+										                })
+										                .then(response => {
+										                    if (!response.ok) {
+										                        throw new Error("회원 삭제 실패");
+										                    }
+										                    return response.json();
+										                })
+										                .then(deleteData => {
+										                    if (deleteData.success) {
+										                        alert(deleteData.message);
+										                        // 삭제 후 페이지 리다이렉션 또는 화면 갱신
+										                        window.location.href = "/logout";  // 예시: 로그아웃 후 홈페이지로 리다이렉션
+										                    } else {
+										                        alert(deleteData.message);
+										                    }
+										                })
+										                .catch(error => {
+										                    console.error("회원 삭제 중 오류 발생:", error);
+										                    alert("회원 삭제 중 오류가 발생했습니다.");
+										                });
+										            } else {
+										                alert("비밀번호가 틀렸습니다.");
+										            }
+										        })
+										        .catch(error => {
+										            console.error("비밀번호 확인 중 오류 발생:", error);
+										            alert("비밀번호 확인 중 오류가 발생했습니다.");
+										        });
+										    });
+										});
+
+										</script>
 									</form>
 								</div>
-
-
-
-
-
-
-
-
-
-
-
 							</div>
 						</div>
 					</div>
@@ -523,6 +713,30 @@
 
 	<script src="<c:url value='/resources/assets/js/vendor.min.js' />"></script>
 	<script src="<c:url value='/resources/assets/js/app.js'/>"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+    function execDaumPostcode() {
+        var width = 500; // 팝업의 너비
+        var height = 600; // 팝업의 높이
+
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 도로명 주소 or 지번 주소 
+                const roadAddr = data.roadAddress; // 도로명
+                const jibunAddr = data.jibunAddress; // 지번
+                document.getElementById('address-line1').value = roadAddr || jibunAddr;
+
+                // 상세 주소 입력으로 focus
+                document.getElementById('address-line2').focus();
+            }
+        }).open({
+            left: (window.screen.width / 2) - (width / 2),
+            top: (window.screen.height / 2) - (height / 2)
+        });
+    }
+    
+</script>
 
 </body>
 </html>
