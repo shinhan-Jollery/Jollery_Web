@@ -11,192 +11,191 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/style.css' />" />
 <style>
+/* Reset */
 body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
+/* Main layout */
 main {
-	flex: 1; /* 메인 컨텐츠가 남은 공간을 차지 */
-	display: flex; /* Flexbox 활성화 */
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; /* 세로 중앙 정렬 */
-	padding-top: 150px; /* 헤더 높이만큼 여백 추가 */
-	padding-bottom: 50px; /* 헤더 높이만큼 여백 추가 */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 0 50px; /* 헤더 높이와 하단 여백 */
 }
 
 .header {
-	background-color: #000000;
+    background-color: #000000;
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0px auto;
-	padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .container-signup {
-	max-width: 800px;
-	width: 50%;
-	padding: 50px;
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 50%;
+    padding: 50px;
+    background-color: #fff;
+    border-radius:8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
+/* Buttons */
 .btn-submit {
-	display: block;
-	width: calc(100% - 10px);
-	padding: 10px;
-	background-color: #000;
-	color: #fff;
-	text-align: center;
-	border-radius: 3px;
-	text-decoration: none;
-}
-
-.checkbox-group {
-  display: flex; /* Flexbox로 한 줄에 배치 */
-  justify-content: space-between; /* 텍스트와 체크박스를 양 끝으로 배치 */
-  align-items: center; /* 체크박스와 텍스트를 수직 가운데 정렬 */
-  margin-bottom: 10px; /* 각 항목 간격 */
-}
-
-.checkbox-group label {
-  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-}
-
-.checkbox-group input[type="checkbox"] {
-  margin-left: 10px; /* 체크박스와 텍스트 사이 간격 */
-}
-
-/* 추가 입력 필드 스타일 */
-input[type="text"] {
-	width: 100%;
-	padding: 8px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-input[type="text"]:focus {
-	border-color: #007bff; /* 포커스 시 파란색 테두리 */
+    display: block;
+    width: calc(100% - 10px);
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
 }
 
 button:hover {
-	background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+    background-color: #f0f0f0;
 }
 
+/* Form Elements */
 .form-group {
-	margin-bottom: 5px;
+    margin-bottom: 30px; /* 입력 섹션 간의 간격 */
 }
 
-.form-group input, .form-group select, .form-group textarea {
-	width: calc(100% - 10px);
-	padding: 10px;
-	border-radius: 3px;
-	border: 1px solid #ddd;
-	margin-bottom: 5px; /* 아래 요소와 간격 */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 10px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 5px;
 }
 
 .form-group textarea {
-	resize: none;
-}
-
-.address-row {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.address-row input[type="text"] {
-	flex: 1; /* 입력 필드가 버튼과 균형 있게 배치됨 */
-	padding: 8px;
-	font-size: 14px;
-	margin-bottom: 10px;
-}
-
-.address-row button {
-	margin-left: 10px;
-	padding: 8px 12px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	cursor: pointer;
-	margin-bottom: 10px;
-}
-
-/* 추가 입력 필드 스타일 */
-input[type="text"] {
-	width: 100%;
-	padding: 8px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+    resize: none;
 }
 
 input[type="text"]:focus {
-	border-color: #007bff; /* 포커스 시 파란색 테두리 */
-}
-
-/* 버튼 스타일 */
-button:hover {
-	background-color: #f0f0f0; /* 호버 시 배경색 변경 */
-}
-
-.form-group {
-	margin-bottom: 5px;
+    border-color: #007bff;
 }
 
 label {
-	display: block;
-	font-size: 14px;
-	margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
+/* Phone Row */
 .phone-row {
-	margin-right: 150px;
-	display: flex; /* Flexbox로 한 줄에 배치 */
-	gap: 10px; /* 각 요소 간격 */
-	align-items: center; /* 수직 가운데 정렬 */
-}
-
-.phone-row select, .phone-row input {
-	height: 38px; /* 높이를 통일 */
-	padding: 5px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+    margin-right: 150px;
+    display: flex;
+    gap: 10px; /* 각 요소 간격 */
+    align-items: center; /* 수직 가운데 정렬 */
 }
 
 .phone-row select {
-	width: 80px; /* 드롭다운 너비 고정 */
+    width: 80px;
+    height: 38px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .phone-row input {
-	flex-grow: 1; /* 입력 필드가 남은 공간을 균등하게 차지 */
+    width: 120px;
+    height: 38px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
+.phone-row button {
+    margin-left: 15px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    height: 38px;
+    margin-bottom: 5px;
+}
+
+/* OTP Row */
+.otp-row {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.otp-row input {
+    height: 38px;
+    font-size: 14px;
+    width: 200px;
+    padding: 5px;
+}
+
+.otp-row button {
+    height: 38px;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* Address Row */
+.address-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.address-row input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.address-row button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Checkbox and Radio Buttons */
+.checkbox-group,
 .radio-group {
-	display: flex; /* Flexbox로 한 줄에 배치 */
-	gap: 20px; /* 라디오 버튼 사이 간격 */
-	align-items: center; /* 수직 가운데 정렬 */
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
+.checkbox-group label,
 .radio-group label {
-	display: flex;
-	align-items: center; /* 라벨과 라디오 버튼 수직 정렬 */
-	font-size: 14px; /* 글씨 크기 조정 */ label { display : block;
-	font-size: 14px;
-	margin-bottom: 5px;
+    font-size: 14px;
+    white-space: nowrap;
 }
-</style>
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+    margin-left: 10px;
+}
 </style>
 </head>
 <body>
@@ -328,18 +327,33 @@ label {
 
 				<!-- 연락처 -->
 				<div class="form-group">
-					<label for="phone">연락처 *</label>
+					<label for="phone">휴대폰 번호 *</label>
 					<div class="phone-row">
 						<select id="phone-part1" name="phone-part1">
 							<option value="010" selected>010</option>
 							<option value="011">011</option>
 							<option value="016">016</option>
 							<option value="019">019</option>
-						</select> <input type="text" id="phone-part2" name="phone-part2"
-							placeholder=""> <input type="text" id="phone-part3"
-							name="phone-part3" placeholder="">
+						</select>
+						<!-- 중간 번호 -->
+						<input type="text" id="phone-part2" name="phone-part2"
+							placeholder="" maxlength="4" oninput="validatePhonePart2(this)">
+						<!-- 마지막 번호 -->
+						<input type="text" id="phone-part3" name="phone-part3"
+							placeholder="" maxlength="4" oninput="validatePhonePart3(this)">
+						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰
+							인증</button>
+					</div>
+					<div class="phone-row2" >
+						<!-- 인증번호 입력 영역 -->
+						<div class="otp-row" style="display: none; margin-top: 20px;">
+							<input type="text" id="otp-code" placeholder="인증번호 입력 (6자리)"
+								maxlength="6">
+							<button type="button" id="otp-submit-button" onclick="submitOTP()">제출</button>
+						</div>
 					</div>
 				</div>
+
 				<!-- 이메일 입력 -->
 				<div class="form-group">
 					<label for="customer-email">이메일</label>
@@ -374,19 +388,19 @@ label {
 				</div>
 				<!-- 약관 동의 -->
 				<div class="form-group">
-				    <label>이용약관 및 개인정보 수집에 동의.*</label>
-				    <div class="checkbox-group">
-				        <label for="terms-agree">[필수] 이용약관 동의</label>
-				        <input type="checkbox" id="terms-agree" name="terms-agree" required>
-				    </div>
-				    <div class="checkbox-group">
-				        <label for="privacy-agree">[필수] 개인정보 수집 및 이용 동의</label>
-				        <input type="checkbox" id="privacy-agree" name="privacy-agree" required>
-				    </div>
-				    <div class="checkbox-group">
-				        <label for="marketing-agree">[선택] 쇼핑정보 수신 동의</label>
-				        <input type="checkbox" id="marketing-agree" name="marketing-agree">
-				    </div>
+					<label>이용약관 및 개인정보 수집에 동의.*</label>
+					<div class="checkbox-group">
+						<label for="terms-agree">[필수] 이용약관 동의</label> <input
+							type="checkbox" id="terms-agree" name="terms-agree" required>
+					</div>
+					<div class="checkbox-group">
+						<label for="privacy-agree">[필수] 개인정보 수집 및 이용 동의</label> <input
+							type="checkbox" id="privacy-agree" name="privacy-agree" required>
+					</div>
+					<div class="checkbox-group">
+						<label for="marketing-agree">[선택] 쇼핑정보 수신 동의</label> <input
+							type="checkbox" id="marketing-agree" name="marketing-agree">
+					</div>
 				</div>
 
 
@@ -396,7 +410,7 @@ label {
 			</form>
 		</div>
 	</main>
-<script>
+	<script>
 document.getElementById("signup-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -451,6 +465,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     });
 });
 </script>
+
 	<!-- footer -->
 	<footer class="bg-dark text-white py-0">
 		<div class="container">
@@ -531,6 +546,124 @@ document.getElementById("signup-form").addEventListener("submit", function(event
         });
     }
     
+</script>
+	<script>
+    function smsPostcode() {
+        // 전화번호 합치기
+        const phonePart1 = document.getElementById('phone-part1').value; // 앞자리
+        const phonePart2 = document.getElementById('phone-part2').value; // 중간 번호
+        const phonePart3 = document.getElementById('phone-part3').value; // 끝 번호
+        const fullPhoneNumber = `\${phonePart1}-\${phonePart2}-\${phonePart3}`;
+        
+        const isConfirmed = confirm(`입력한 전화번호가 ${fullPhoneNumber}이 맞습니까?`);
+        if (!isConfirmed) {
+            alert('전화번호 인증이 취소되었습니다.');
+            return;
+        }
+
+        // 인증 버튼 비활성화
+        const authButton = document.getElementById('auth-button');
+        authButton.disabled = true;
+        authButton.textContent = '인증 요청 중'; // 버튼 텍스트 변경
+
+        // 서버로 전화번호 전송
+        fetch('/jollery/auth/sms', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phoneNumber: fullPhoneNumber,
+            }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('서버 응답 실패');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.success) {
+                    alert('인증 코드가 전송되었습니다.');
+                    // 인증번호 입력 칸과 제출 버튼 표시
+                    document.querySelector('.otp-row').style.display = 'flex';
+                } else {
+                    alert('인증 코드 전송에 실패했습니다.');
+                    authButton.disabled = false;
+                    authButton.textContent = '휴대폰 인증';
+                }
+            })
+            .catch((error) => {
+                console.error('에러 발생:', error);
+                alert('문제가 발생했습니다. 다시 시도해주세요.');
+                authButton.disabled = false;
+                authButton.textContent = '휴대폰 인증';
+            });
+    }
+
+    function submitOTP() {
+        const otpCode = document.getElementById('otp-code').value; // 사용자가 입력한 OTP 코드
+        const phonePart1 = document.getElementById('phone-part1').value; // 앞자리
+        const phonePart2 = document.getElementById('phone-part2').value; // 중간 번호
+        const phonePart3 = document.getElementById('phone-part3').value; // 끝 번호
+        const fullPhoneNumber = `\${phonePart1}\${phonePart2}\${phonePart3}`;
+
+        if (otpCode.length !== 6 || isNaN(otpCode)) {
+            alert('6자리 숫자 인증번호를 정확히 입력해주세요.');
+            return;
+        }
+
+        // 서버로 OTP 검증 요청
+        fetch('/jollery/auth/otp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phoneNumber: fullPhoneNumber,
+                code: otpCode,
+            }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('서버 응답 실패');
+                }
+                return response.json();
+            })
+            .then((data) => {
+            	console.log(data);   
+                if (data.status === 'success') {
+                    alert('인증이 완료되었습니다.');
+
+                    // 전화번호 입력 칸 비활성화
+                    document.getElementById('phone-part1').disabled = true;
+                    document.getElementById('phone-part2').disabled = true;
+                    document.getElementById('phone-part3').disabled = true;
+
+                    // 인증번호 입력 칸과 제출 버튼 숨기기
+                    document.querySelector('.otp-row').style.display = 'none';
+
+                    // 휴대폰 인증 버튼도 숨기기
+                    document.getElementById('auth-button').style.display = 'none';
+                } else {
+                    alert('인증에 실패했습니다. 다시 시도해주세요.');
+                }
+            })
+            .catch((error) => {
+                console.error('에러 발생:', error);
+                alert('문제가 발생했습니다. 다시 시도해주세요.');
+            });
+    }
+
+    // 유효성 검사 함수 (중간 번호)
+    function validatePhonePart2(input) {
+        input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4); // 숫자만 허용, 최대 4자리
+    }
+
+    // 유효성 검사 함수
+    function validatePhonePart3(input) {
+        input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4); // 숫자만 허용, 최대 4자리
+    }
 </script>
 </body>
 </html>

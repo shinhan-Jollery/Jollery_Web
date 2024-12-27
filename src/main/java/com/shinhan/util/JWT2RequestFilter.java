@@ -59,7 +59,6 @@ public class JWT2RequestFilter implements Filter {
                 // 로그인 X or 위조
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
                 System.out.println("JWT 위조 또는 만료됨");
-                return; // 필터 체인 중단
             }
         } else {
             System.out.println("JWT 토큰이 없습니다.");
