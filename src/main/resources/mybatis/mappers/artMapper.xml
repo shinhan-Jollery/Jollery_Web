@@ -4,6 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.shinhan.art">
+<<<<<<< HEAD
 
 	<!-- 특정id 아트 상세 조회 -->
 	<select id="selectByArtId" parameterType="int" resultType="artsVO">
@@ -63,5 +64,7 @@
 		art_id =
 		#{art_id}
 	</delete>
+=======
+>>>>>>> db90a539e3ef71fa41a7d6babe7d85dc76d4731a
 
 </mapper>
