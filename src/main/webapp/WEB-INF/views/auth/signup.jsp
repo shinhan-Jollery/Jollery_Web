@@ -13,188 +13,225 @@
 <style>
 /* Reset */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f9f9f9;
 }
 
 /* Main layout */
 main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 150px 0 50px; /* 헤더 높이와 하단 여백 */
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 150px 0 50px; /* 헤더 높이와 하단 여백 */
 }
 
 .header {
-    background-color: #000000;
+	background-color: #000000;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
 }
 
 .container-signup {
-    max-width: 800px;
-    width: 50%;
-    padding: 50px;
-    background-color: #fff;
-    border-radius:8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	max-width: 800px;
+	width: 50%;
+	padding: 50px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 /* Buttons */
 .btn-submit {
-    display: block;
-    width: calc(100% - 10px);
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    text-decoration: none;
+	display: block;
+	width: calc(100% - 10px);
+	padding: 10px;
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	border-radius: 3px;
+	text-decoration: none;
 }
 
 button:hover {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 
 /* Form Elements */
 .form-group {
-    margin-bottom: 30px; /* 입력 섹션 간의 간격 */
+	margin-bottom: 30px; /* 입력 섹션 간의 간격 */
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: calc(100% - 10px);
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    margin-bottom: 5px;
+.form-group input, .form-group select, .form-group textarea {
+	width: calc(100% - 10px);
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin-bottom: 5px;
 }
 
 .form-group textarea {
-    resize: none;
+	resize: none;
 }
 
 input[type="text"]:focus {
-    border-color: #007bff;
+	border-color: #007bff;
 }
 
 label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
+	display: block;
+	font-size: 14px;
+	margin-bottom: 5px;
 }
 
 /* Phone Row */
 .phone-row {
-    margin-right: 150px;
-    display: flex;
-    gap: 10px; /* 각 요소 간격 */
-    align-items: center; /* 수직 가운데 정렬 */
+	margin-right: 150px;
+	display: flex;
+	gap: 10px; /* 각 요소 간격 */
+	align-items: center; /* 수직 가운데 정렬 */
 }
 
 .phone-row select {
-    width: 80px;
-    height: 38px;
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	width: 80px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 .phone-row input {
-    width: 120px;
-    height: 38px;
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	width: 120px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 .phone-row button {
-    margin-left: 15px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-    height: 38px;
-    margin-bottom: 5px;
+	margin-left: 15px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	height: 38px;
+	margin-bottom: 5px;
+}
+.email-row {
+	margin-right: 150px;
+	display: flex;
+	gap: 10px; /* 각 요소 간격 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+
+.email-row select {
+	width: 80px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.email-row input {
+	width: 120px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.email-row button {
+	margin-left: 15px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	height: 38px;
+	margin-bottom: 5px;
 }
 
 /* OTP Row */
 .otp-row {
-    display: flex;
-    margin-top: 10px;
-    gap: 10px;
+	display: flex;
+	margin-top: 10px;
+	gap: 10px;
+}
+/* OTP Row */
+.emailotp-row {
+	display: flex;
+	margin-top: 10px;
+	gap: 10px;
 }
 
 .otp-row input {
-    height: 38px;
-    font-size: 14px;
-    width: 200px;
-    padding: 5px;
+	height: 38px;
+	font-size: 14px;
+	width: 200px;
+	padding: 5px;
 }
 
 .otp-row button {
-    height: 38px;
-    font-size: 14px;
-    padding: 5px 10px;
+	height: 38px;
+	font-size: 14px;
+	padding: 5px 10px;
 }
 
 /* Address Row */
 .address-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .address-row input[type="text"] {
-    flex: 1;
-    padding: 8px;
-    font-size: 14px;
-    margin-bottom: 10px;
+	flex: 1;
+	padding: 8px;
+	font-size: 14px;
+	margin-bottom: 10px;
 }
 
 .address-row button {
-    margin-left: 10px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-    margin-bottom: 10px;
+	margin-left: 10px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	margin-bottom: 10px;
 }
 
 /* Checkbox and Radio Buttons */
-.checkbox-group,
-.radio-group {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+.checkbox-group, .radio-group {
+	display: flex;
+	gap: 20px;
+	align-items: center;
 }
 
-.checkbox-group label,
-.radio-group label {
-    font-size: 14px;
-    white-space: nowrap;
+.checkbox-group label, .radio-group label {
+	font-size: 14px;
+	white-space: nowrap;
 }
 
-.checkbox-group input[type="checkbox"],
-.radio-group input[type="radio"] {
-    margin-left: 10px;
+.checkbox-group input[type="checkbox"], .radio-group input[type="radio"]
+	{
+	margin-left: 10px;
 }
 </style>
 </head>
@@ -344,12 +381,13 @@ label {
 						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰
 							인증</button>
 					</div>
-					<div class="phone-row2" >
+					<div class="phone-row2">
 						<!-- 인증번호 입력 영역 -->
 						<div class="otp-row" style="display: none; margin-top: 20px;">
 							<input type="text" id="otp-code" placeholder="인증번호 입력 (6자리)"
 								maxlength="6">
-							<button type="button" id="otp-submit-button" onclick="submitOTP()">제출</button>
+							<button type="button" id="otp-submit-button"
+								onclick="submitOTP()">제출</button>
 						</div>
 					</div>
 				</div>
@@ -357,34 +395,46 @@ label {
 				<!-- 이메일 입력 -->
 				<div class="form-group">
 					<label for="customer-email">이메일</label>
-					<div style="display: flex; align-items: center; gap: 10px;">
+					<div class="email-row">
+						<!-- 이메일 앞부분 -->
 						<input type="text" id="email-prefix" name="email-prefix"
 							placeholder="Email" style="flex-grow: 1; height: 40px;">
-						<span style="line-height: 1;">@</span> <select id="email-domain"
-							name="email-domain" style="flex-grow: 1; height: 40px;">
+						<span style="line-height: 1;">@</span>
+						<!-- 이메일 도메인 선택 -->
+						<select id="email-domain" name="email-domain"
+							style="flex-grow: 1; height: 40px;">
 							<option value="naver.com">naver.com</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="daum.net">daum.net</option>
 							<option value="custom">직접 입력</option>
 						</select>
+						<!-- 인증 버튼 -->
+						<button type="button" id="email-auth-button" onclick="sendEmail()">이메일 인증</button>
 					</div>
-					<!-- 직접 입력 필드 -->
+					<!-- 사용자 입력 -->
 					<input type="text" id="custom-email-domain"
 						name="custom-email-domain" placeholder="직접 입력"
 						style="margin-top: 10px; display: none;">
 					<script>
-					document.getElementById("email-domain").addEventListener(
-							"change",
-							function() {
-								const customField = document
-										.getElementById("custom-email-domain");
-								if (this.value === "custom") {
-									customField.style.display = "block";
-								} else {
-									customField.style.display = "none";
-								}
-							});
-				</script>
+        document.getElementById("email-domain").addEventListener("change", function() {
+            const customField = document.getElementById("custom-email-domain");
+            if (this.value === "custom") {
+                customField.style.display = "block";
+            } else {
+                customField.style.display = "none";
+            }
+        });
+    </script>
+
+
+
+					<!-- 인증번호 입력 영역 -->
+					<div class="emailotp-row" style="display: none; margin-top: 20px;">
+						<input type="text" id="email-otp-code" placeholder="인증번호 입력 (6자리)"
+							maxlength="6">
+						<button type="button" id="email-otp-submit-button"
+							onclick="submitEmailOTP()">제출</button>
+					</div>
 				</div>
 				<!-- 약관 동의 -->
 				<div class="form-group">
@@ -548,6 +598,74 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     
 </script>
 	<script>
+    // 이메일 인증 요청
+    async function sendEmail() {
+        // 이메일 조합
+        const emailPrefix = document.getElementById("email-prefix").value;
+        const emailDomain = document.getElementById("email-domain").value;
+        const customDomain = document.getElementById("custom-email-domain").value;
+
+        const email = `\${emailPrefix}@\${customDomain}\${emailDomain}`;
+
+        if (!emailPrefix || !email) {
+            alert("올바른 이메일 주소를 입력해주세요.");
+            return;
+        }
+
+        const response = await fetch('/jollery/auth/sendEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        
+
+        if (result.status === "success") {
+            // 인증번호 입력 필드 보이기
+        	document.querySelector('.emailotp-row').style.display = 'flex';
+        }
+    }
+
+    // 인증 코드 제출
+    async function submitEmailOTP() {
+        const emailPrefix = document.getElementById("email-prefix").value;
+        const emailDomain = document.getElementById("email-domain").value;
+        const customDomain = document.getElementById("custom-email-domain").value;
+
+        const email = `\${emailPrefix}@\${customDomain}\${emailDomain}`;
+        const code = document.getElementById("email-otp-code").value;
+
+        if (!email || !code) {
+            alert("이메일과 인증 코드를 모두 입력해주세요.");
+            return;
+        }
+
+        const response = await fetch('/jollery/auth/verifyCode', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, code }),
+        });
+
+        const result = await response.json();
+        
+        if (result.status === "success") {
+            // 인증번호 입력 필드 보이기
+            
+        	document.querySelector('.emailotp-row').style.display = 'none';
+        	document.getElementById('email-auth-button').style.display = 'none';
+            document.getElementById('email-prefix').disabled = true;
+            document.getElementById('email-domain').disabled = true;
+        }
+        alert(result.message);
+    }
+</script>
+	<script>
     function smsPostcode() {
         // 전화번호 합치기
         const phonePart1 = document.getElementById('phone-part1').value; // 앞자리
@@ -641,6 +759,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
                     document.querySelector('.otp-row').style.display = 'none';
 
                     // 휴대폰 인증 버튼도 숨기기
+                    
                     document.getElementById('auth-button').style.display = 'none';
                 } else {
                     alert('인증에 실패했습니다. 다시 시도해주세요.');
