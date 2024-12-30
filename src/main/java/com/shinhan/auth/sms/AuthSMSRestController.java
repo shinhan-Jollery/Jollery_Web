@@ -2,6 +2,7 @@ package com.shinhan.auth.sms;
 
 import java.util.Map;
 
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,8 @@ import com.twilio.rest.verify.v2.service.VerificationCheck;
 public class AuthSMSRestController {
 
 //	 Find your Account Sid and Token at twilio.com/console
-	public static final String ACCOUNT_SID = "";
-	public static final String AUTH_TOKEN = "";
-	public static final String SERVICE_SID = "";
+
+
 
 	@PostMapping(value = "/sms", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<String> SMSAuth(@RequestBody Map<String, Object> requestBody, HttpServletResponse response) {
