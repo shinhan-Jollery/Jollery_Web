@@ -1,5 +1,6 @@
 package com.shinhan.auth;
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -22,13 +23,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RequestMapping("/auth")
 public class AuthRestController {
 
-
 	 @Autowired
 	    private AuthService authService;
 
 	    // JWT 비밀키
 	    private static final String SECRET_KEY = "nahyunjungyeonmomosanajihyomimidahyuncheyoungtwuyu";
-
 
 	    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	    public ResponseEntity<String> login(@RequestBody Map<String, Object> requestBody, HttpServletResponse response) {

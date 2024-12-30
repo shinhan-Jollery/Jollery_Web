@@ -624,16 +624,13 @@ document.getElementById("signup-form").addEventListener("submit", function(event
                 code: otpCode,
             }),
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('서버 응답 실패');
-                }
-                return response.json();
-            })
+            .then((response) => response.json()) // 상태 코드와 상관없이 JSON 파싱
             .then((data) => {
-            	console.log(data);   
+                console.log('서버 응답 데이터:', data);
+
                 if (data.status === 'success') {
                     alert('인증이 완료되었습니다.');
+                    // UI 업데이트 로직
 
                     // 전화번호 입력 칸 비활성화
                     document.getElementById('phone-part1').disabled = true;
