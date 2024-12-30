@@ -24,7 +24,6 @@ public class AuthSignUpDAO {
             if (member == null) {
             	MembersDTO member1 = new MembersDTO();
             	member1.setMember_is_artist("아이디가 올바르지 않습니다");
-                System.out.println("사용자를 찾을 수 없습니다");
                 return member1;
             }
             return member;

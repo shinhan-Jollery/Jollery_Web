@@ -28,6 +28,8 @@ public class AuthRestController {
 
 	@Autowired
 	private AuthService authService;
+    @Autowired
+    private AuthSignUpDAO authSignUpDAO;
 
 	// JWT 비밀키
 	private static final String SECRET_KEY = "nahyunjungyeonmomosanajihyomimidahyuncheyoungtwuyu";
@@ -69,24 +71,24 @@ public class AuthRestController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
-	    Cookie[] cookies = request.getCookies(); // 모든 쿠키 가져오기
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	            if ("jwtToken".equals(cookie.getName())) { // 특정 쿠키 이름 확인
-	                // 쿠키 만료 설정
-	                cookie.setValue(null);
-	                cookie.setMaxAge(0);
-	                cookie.setPath("/"); // 경로 설정 (생성 시와 동일하게)
-	                
-	                // HttpOnly 속성을 수동으로 추가
-	                String cookieHeader = String.format("%s=%s; Path=%s; Max-Age=0; HttpOnly",
-	                        cookie.getName(), cookie.getValue(), cookie.getPath());
-	                response.addHeader("Set-Cookie", cookieHeader);
-	            }
-	        }
-	    }
+		Cookie[] cookies = request.getCookies(); // 모든 쿠키 가져오기
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if ("jwtToken".equals(cookie.getName())) { // 특정 쿠키 이름 확인
+					// 쿠키 만료 설정
+					cookie.setValue(null);
+					cookie.setMaxAge(0);
+					cookie.setPath("/"); // 경로 설정 (생성 시와 동일하게)
 
-	    return ResponseEntity.ok("{\"status\":\"success\", \"message\":\"로그아웃 성공\"}");
+					// HttpOnly 속성을 수동으로 추가
+					String cookieHeader = String.format("%s=%s; Path=%s; Max-Age=0; HttpOnly", cookie.getName(),
+							cookie.getValue(), cookie.getPath());
+					response.addHeader("Set-Cookie", cookieHeader);
+				}
+			}
+		}
+
+		return ResponseEntity.ok("{\"status\":\"success\", \"message\":\"로그아웃 성공\"}");
 	}
 
 	@PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
@@ -126,4 +128,19 @@ public class AuthRestController {
 			return ResponseEntity.badRequest().body("{\"status\":\"fail\"}");
 		}
 	}
+
+	@PostMapping(value = "/idchecker", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<String> duplicateMemberIdChecker(@RequestBody Map<String, Object> requestBody) {
+	    String userId = (String) requestBody.get("userId");  
+	    MembersDTO member = authSignUpDAO.selectMemberById(userId);
+	     boolean issuccess = member.getMember_login_id() ==null;
+	    if (issuccess) {
+	        // ID 사용 가능 (성공)
+	        return ResponseEntity.ok("{\"status\":\"success\", \"message\":\"사용 가능한 ID입니다.\"}");
+	    } else {
+	        // ID 이미 존재 (실패)
+	        return ResponseEntity.ok("{\"status\":\"error\", \"message\":\"이미 사용 중인 ID입니다.\"}");
+	    }
+	}
+
 }
