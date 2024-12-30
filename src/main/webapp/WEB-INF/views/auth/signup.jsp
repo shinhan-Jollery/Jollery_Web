@@ -429,12 +429,6 @@ document.getElementById("signup-form").addEventListener("submit", function(event
     if (emailDomain === "custom") {
         emailDomain = formData.get("custom-email-domain");
     }
-    const addressLine1 = formData.get("address-line1"); // 도로명 주소
-    const addressLine2 = formData.get("address-line2"); // 상세 주소
-    const address = `\${addressLine1} \${addressLine2}`.trim(); // 공백 제거
-    
-    const email = `\${emailPrefix}@\${emailDomain}`;
-
 
     const jsonData = {
         username: formData.get("username"),
