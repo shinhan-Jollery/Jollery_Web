@@ -303,6 +303,8 @@ label {
             } else {
                 alert(result.message); 
             }
+            
+            
         } catch (error) {
             console.error('중복 체크 요청 중 오류 발생:', error);
             alert('서버와 통신 중 문제가 발생했습니다. 나중에 다시 시도해주세요.');
