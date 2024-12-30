@@ -11,6 +11,9 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/style.css' />" />
 <style>
+#email-otp-code {
+	width: 200px;
+}
 /* Reset */
 body {
 	font-family: Arial, sans-serif;
@@ -103,6 +106,13 @@ label {
 	align-items: center; /* 수직 가운데 정렬 */
 }
 
+.id-row {
+	margin-right: 150px;
+	display: flex;
+	gap: 10px; /* 각 요소 간격 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+
 .phone-row select {
 	width: 80px;
 	height: 38px;
@@ -110,6 +120,18 @@ label {
 	font-size: 14px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+}
+
+.id-row button {
+	margin-left: 15px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	height: 53px;
+	width: 110px;
+	margin-bottom: 5px;
 }
 
 .phone-row input {
@@ -131,6 +153,7 @@ label {
 	height: 38px;
 	margin-bottom: 5px;
 }
+
 .email-row {
 	margin-right: 150px;
 	display: flex;
@@ -236,98 +259,56 @@ label {
 </style>
 </head>
 <body>
-	<!-- header -->
-	<header class="header header-dark header-sticky">
-		<div class="container">
-			<div class="row">
-				<nav class="navbar navbar-expand-lg navbar-dark">
-					<a href="main.do" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
-					<button class="navbar-toggler order-2" type="button"
-						data-toggle="collapse" data-target=".navbar-collapse"
-						aria-controls="navbarMenu" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-
-					<div class="collapse navbar-collapse order-3 order-lg-1"
-						id="navbarMenu">
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item dropdown megamenu"><a
-								class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-4"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">CATEGORIES</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
-									<div class="row">
-										<ul class="col-6 col-md-3 col-lg-2">
-											<li><span class="megamenu-title">회화</span></li>
-											<li><a class="dropdown-item" href="index.html">동양화</a></li>
-											<li><a class="dropdown-item" href="index-carousel.html">서양화</a></li>
-											<li><a class="dropdown-item"
-												href="index-categories.html">판화</a></li>
-											<li><a class="dropdown-item" href="index-modern.html">혼합(기타)</a></li>
-										</ul>
-										<ul class="col-6 col-md-3 col-lg-2">
-											<li><span class="megamenu-title">조소</span></li>
-											<li><a class="dropdown-item" href="product-classic.html">석재</a></li>
-											<li><a class="dropdown-item" href="product-scroll.html">목재</a></li>
-											<li><a class="dropdown-item" href="product-masonry.html">금속</a></li>
-											<li><a class="dropdown-item" href="product-modern.html">3D프린팅</a></li>
-											<li><a class="dropdown-item" href="product-promo.html">혼합재료(기타)</a></li>
-										</ul>
-										<ul class="col-6 col-md-3 col-lg-2">
-											<li><span class="megamenu-title">공예</span></li>
-											<li><a class="dropdown-item" href="portal.html">도예</a></li>
-											<li><a class="dropdown-item" href="profile.html">유리공예</a></li>
-											<li><a class="dropdown-item" href="profile-orders.html">금속공예</a></li>
-											<li><a class="dropdown-item"
-												href="profile-addresses.html">목공예</a></li>
-											<li><a class="dropdown-item"
-												href="profile-payments.html">혼합재료(기타)</a></li>
-										</ul>
-										<ul class="col-6 col-md-3 col-lg-2">
-											<li><span class="megamenu-title">기타</span></li>
-											<li><a class="dropdown-item" href="about.html">사진</a></li>
-											<li><a class="dropdown-item" href="contact.html">설치미술</a></li>
-											<li><a class="dropdown-item" href="faq.html">서예</a></li>
-											<li><a class="dropdown-item" href="text.html">실험예술(기타)</a></li>
-										</ul>
-									</div>
-								</div></li>
-							<!-- 검색창 추가 -->
-							<form class="search-bar" action="/search" method="GET">
-								<div class="search-container">
-									<i class="icon-search"></i> <input type="text" name="query"
-										placeholder="Search..." />
-								</div>
-							</form>
-						</ul>
-					</div>
-
-					<div class="collapse navbar-collapse order-4 order-lg-3"
-						id="navbarMenu2">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="portal.html">로그인</a></li>
-							<li class="nav-item"><a class="nav-link" href="관심목록"><i
-									class="icon-heart"></i></a></li>
-							<li class="nav-item cart"><a data-toggle="modal"
-								data-target="#cart" class="nav-link"><span>Cart</span><span>2</span></a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</header>
+	<c:choose>
+		<c:when test="${not empty userId}">
+			<%@ include file="/WEB-INF/views/common/userheader.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/WEB-INF/views/common/guestheader.jsp"%>
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<!-- 회원가입 폼 -->
 		<div class="container-signup">
 			<form id="signup-form">
 				<!-- 아이디 -->
 				<div class="form-group">
-					<label for="username">아이디*</label> <input type="text" id="username"
-						name="username" class="form-control" placeholder="영문소문자/숫자, 4~16자"
-						required>
+					<label for="username">아이디*</label>
+					<div class="id-row">
+						<input type="text" id="username" name="username"
+							class="form-control" placeholder="영문소문자/숫자, 4~16자" required>
+						<button type="button" id="auth-button"
+							onclick="duplicateChecker()">중복 체크</button>
+					</div>
 				</div>
+				<script>
+    // 아이디 중복 체크 함수
+    async function duplicateChecker() {
+        const userId = document.getElementById("username").value;
+		console.log(JSON.stringify({ userId }));
+        try {
+            const response = await fetch('/jollery/auth/idchecker', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId }),
+            });
+			console.log(response);
+            // 응답 처리
+            const result = await response.json(); // JSON 파싱
+
+            if (response.status === "success") {
+                alert(result.message); 
+            } else {
+                alert(result.message); 
+            }
+        } catch (error) {
+            console.error('중복 체크 요청 중 오류 발생:', error);
+            alert('서버와 통신 중 문제가 발생했습니다. 나중에 다시 시도해주세요.');
+        }
+    }
+</script>
 
 				<!-- 비밀번호 -->
 				<div class="form-group">
@@ -378,7 +359,7 @@ label {
 						<!-- 마지막 번호 -->
 						<input type="text" id="phone-part3" name="phone-part3"
 							placeholder="" maxlength="4" oninput="validatePhonePart3(this)">
-						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰
+						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰}
 							인증</button>
 					</div>
 					<div class="phone-row2">
@@ -409,13 +390,15 @@ label {
 							<option value="custom">직접 입력</option>
 						</select>
 						<!-- 인증 버튼 -->
-						<button type="button" id="email-auth-button" onclick="sendEmail()">이메일 인증</button>
+						<button type="button" id="email-auth-button" onclick="sendEmail()">이메일
+							인증</button>
 					</div>
-					<!-- 사용자 입력 -->
-					<input type="text" id="custom-email-domain"
-						name="custom-email-domain" placeholder="직접 입력"
-						style="margin-top: 10px; display: none;">
-					<script>
+					<div class="email-row">
+						<!-- 사용자 입력 -->
+						<input type="text" id="custom-email-domain"
+							name="custom-email-domain" placeholder="직접 입력"
+							style="margin-top: 10px; display: none;">
+						<script>
         document.getElementById("email-domain").addEventListener("change", function() {
             const customField = document.getElementById("custom-email-domain");
             if (this.value === "custom") {
@@ -428,12 +411,13 @@ label {
 
 
 
-					<!-- 인증번호 입력 영역 -->
-					<div class="emailotp-row" style="display: none; margin-top: 20px;">
-						<input type="text" id="email-otp-code" placeholder="인증번호 입력 (6자리)"
-							maxlength="6">
-						<button type="button" id="email-otp-submit-button"
-							onclick="submitEmailOTP()">제출</button>
+						<!-- 인증번호 입력 영역 -->
+						<div class="emailotp-row" style="display: none; margin-top: 20px;">
+							<input type="text" id="email-otp-code"
+								placeholder="인증번호 입력 (6자리)" maxlength="6">
+							<button type="button" id="email-otp-submit-button"
+								onclick="submitEmailOTP()">제출</button>
+						</div>
 					</div>
 				</div>
 				<!-- 약관 동의 -->
