@@ -41,5 +41,9 @@ public class AuthController {
 	public String login() {
 		return "auth/login";
 	}
-
+	
+	@GetMapping("/pwSearch")
+	public String pwSearch() {
+		return "auth/pwSearch";
+	}
 }
