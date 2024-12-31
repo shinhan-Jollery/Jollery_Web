@@ -10,7 +10,7 @@ import com.shinhan.VO.OrdersDTO;
 
 //Spring4버전 : @RestController => @Controller + @ResponseBody
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/order")
 public class OrderRestController {
 
 	@Autowired
@@ -21,7 +21,7 @@ public class OrderRestController {
 	
 	//특정 주문 상세내역 조회
 	@GetMapping(value = "/order.do/{orderId}", produces = "application/json")
-	public OrdersDTO f3(@PathVariable("orderId") int order_id) {
-		return orderService.selectByIdService(order_id);
+	public OrdersDTO getOrderDetails(@PathVariable("orderId") int orderId) {
+		return orderService.selectByIdService(orderId);
 	}
 }

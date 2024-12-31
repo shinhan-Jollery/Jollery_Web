@@ -86,13 +86,12 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#!" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">[회원이름]</a> <!-- ${sessionScope.user.name} ! -->
-								<div class="dropdown-menu dropdown-menu-right"
-									aria-labelledby="userDropdown">
-									<a class="dropdown-item" href="profile.html">회원정보</a> <a
-										class="dropdown-item" href="profile-orders.html">주문내역</a> <a
-										class="dropdown-item" href="wishlist.html">관심상품</a> <a
-										class="dropdown-item" href="seller-auth.html">판매자 인증</a>
+								aria-expanded="false">홍길동 님</a> <!-- ${sessionScope.user.name} ! -->
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="profile.html">회원정보</a> <br>
+									<a class="dropdown-item" href="profile-orders.html">주문내역</a> <br>
+									<a class="dropdown-item" href="wishlist.html">관심상품</a> <br>
+									<a class="dropdown-item" href="seller-auth.html">판매자 인증</a>
 								</div></li>
 							<!-- 로그아웃 버튼 -->
 							<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a>

@@ -225,7 +225,7 @@
 												<div class="row align-items-center">
 													<div class="col-lg-4">
 														<h3 class="order-number">날짜(주문번호)</h3>
-														<a href="#!" class="action eyebrow underline">상세보기</a>
+														<a href="/order/${orderId}" class="action eyebrow underline">상세보기</a>
 													</div>
 													<div class="col-lg-4">
 														<span class="order-status sent">배송상태 나타내기</span>
