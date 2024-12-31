@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.shinhan.VO.AuthCodeDTO;
+
 public class VerificationService {
 
-    private static final Map<String, String> verificationCodes = new HashMap<>();
     private static final Random random = new Random();
 
     /**
@@ -17,7 +18,6 @@ public class VerificationService {
      */
     public static String generateVerificationCode(String email) {
         String code = String.format("%06d", random.nextInt(1000000)); // 6자리 인증 코드
-        verificationCodes.put(email, code);
         return code;
     }
     
@@ -27,7 +27,8 @@ public class VerificationService {
      * @param code
      * @return
      */
-    public static boolean verifyCode(String email, String code) {
-        return code.equals(verificationCodes.get(email));
+    public static boolean verifyCode(AuthCodeDTO authcode, String code) {
+    	boolean result = authcode.getAuth_code().equals(code)?true:false;
+        return result;
     }
 }
