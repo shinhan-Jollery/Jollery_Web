@@ -30,7 +30,7 @@ public class AuthController {
 
 	@GetMapping("/signup")
 	public String signup(HttpSession session, HttpServletRequest request, Model model) {
-		int userId = (int) request.getAttribute("userId");
+		Integer userId = (Integer) request.getAttribute("userId");
 		String memberName = (String) request.getAttribute("Member_name");
 		model.addAttribute("userId", userId);
 		model.addAttribute("memberName", memberName);

@@ -49,4 +49,10 @@ public class AuthMailRestController {
         }
         return response;
     }
+    //ID 찾기 이메일 발송
+    /*
+    로그인 ID랑 이름 member에 있는거랑 같은지 확인 한 다음에
+    
+    */
+    
 }

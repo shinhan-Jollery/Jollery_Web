@@ -361,8 +361,7 @@ label {
 						<!-- 마지막 번호 -->
 						<input type="text" id="phone-part3" name="phone-part3"
 							placeholder="" maxlength="4" oninput="validatePhonePart3(this)">
-						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰}
-							인증</button>
+						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰 인증</button>
 					</div>
 					<div class="phone-row2">
 						<!-- 인증번호 입력 영역 -->

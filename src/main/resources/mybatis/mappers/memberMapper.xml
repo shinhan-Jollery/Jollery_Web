@@ -3,27 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.shinhan.member">
+<mapper namespace="com.shinhan.authcode">
 	<!-- 회원가입  -->
-    <insert id="insertMember" parameterType="com.shinhan.VO.MembersDTO">
+    <insert id="insertMember" parameterType="com.shinhan.VO.AuthCodeDTO">
         INSERT INTO members (
-            member_login_id,
-            member_password,
-            member_name,
-            member_birth,
-            member_phone,
-            member_address,
-            member_email,
-            member_is_artist
+            String auth_expired,
+            String auth_code,
+            Date member_birth
         ) VALUES (
-            #{member_login_id},
-            #{member_password},
-            #{member_name},
-            #{member_birth},
-            #{member_phone},
-            #{member_address},
-            #{member_email},
-            '0'
+            #{auth_expired},
+            #{auth_code},
+            #{member_birth}
         )
     </insert>
 
