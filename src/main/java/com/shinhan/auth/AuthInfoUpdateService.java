@@ -9,31 +9,26 @@ import com.shinhan.VO.MembersDTO;
 public class AuthInfoUpdateService {
 	@Autowired
 	private AuthInfoUpdateDAO authInfoUpdateDAO;
-	
-	
-    public MembersDTO getMemberInfo(Integer memberId) {
-        return authInfoUpdateDAO.getMemberById(memberId);
-    }
-	
-	
-    public boolean updateMemberInfo(MembersDTO member) {
-        return authInfoUpdateDAO.updateMemberInfo(member) > 0;
-    }
 
-    
-    public boolean deleteMember(Integer memberId) {
-        return authInfoUpdateDAO.deleteMember(memberId) > 0;
-    }
+	public MembersDTO getMemberInfo(Integer memberId) {
+		return authInfoUpdateDAO.getMemberById(memberId);
+	}
 
-   
-    public MembersDTO checkPassword(Integer memberId, String memberPassword) {
-        System.out.println("checkPassword - memberId: " + memberId + ", password: " + memberPassword);
+	public boolean updateMemberInfo(MembersDTO member) {
+		return authInfoUpdateDAO.updateMemberInfo(member) > 0;
+	}
 
-        MembersDTO result = authInfoUpdateDAO.checkPassword(memberId, memberPassword);
+	public boolean deleteMember(Integer memberId) {
+		return authInfoUpdateDAO.deleteMember(memberId) > 0;
+	}
 
-        System.out.println("Password check result from DAO: " + result);
-        return result;
-    }
-    
+	public MembersDTO checkPassword(Integer memberId, String memberPassword) {
+		System.out.println("checkPassword - memberId: " + memberId + ", password: " + memberPassword);
+
+		MembersDTO result = authInfoUpdateDAO.checkPassword(memberId, memberPassword);
+
+		System.out.println("Password check result from DAO: " + result);
+		return result;
+	}
 
 }
