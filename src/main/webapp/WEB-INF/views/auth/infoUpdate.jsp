@@ -257,10 +257,10 @@
 				                document.getElementById("name").value = profile.member_name;
 				                document.getElementById("address-line1").value = profile.member_address;
 				                
-				                const timestamp = 655484400000; // 서버에서 넘어온 타임스탬프
+				                const timestamp = profile.member_birth; // 서버에서 넘어온 타임스탬프
 				                const date = new Date(timestamp); // 타임스탬프를 Date 객체로 변환
 				             	// YYYY-MM-DD 형식으로 변환
-				                const formattedDate = date.toISOString().split("T")[0];
+				                const formattedDate = date.toLocaleDateString("en-CA");
 				                document.getElementById("birthdate").value = formattedDate;
 				                
 				                const phoneParts = profile.member_phone.split("-");
