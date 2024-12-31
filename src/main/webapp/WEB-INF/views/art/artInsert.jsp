@@ -22,9 +22,6 @@
 <title>Profile</title>
 <style>
 
-body{
-border: 0px;
-}
 
 /* 기본적으로 서브메뉴 숨기기 */
 .submenu {
@@ -167,9 +164,6 @@ input {
 	resize: vertical;
 	height: 300px;
 } */
-
-
-
 .form-group .btn-upload {
 	background-color: #007bff;
 	color: #fff;
@@ -328,7 +322,7 @@ input {
 							내역</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-3"
 							role="tab" aria-controls="sidebar-1-3" aria-selected="false">관심
 							상품</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-4"
-							role="tab" aria-controls="sidebar-1-4" aria-selected="false">작품
+							role="tab" aria-controls="sidebar-1-4" aria-selected="false" onclick="aa()">작품
 							등록</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-5"
 							role="tab" aria-controls="sidebar-1-5" aria-selected="false">작품정보
 							수정</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-6"
@@ -659,39 +653,14 @@ input {
 									</div>
 								</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-								<!-- 작품 등록 -->
+ 
+ 							<!-- 작품 등록 class="tab-pane fade" -->
 								<div class="tab-pane fade" id="sidebar-1-4" role="tabpanel"
-									aria-labelledby="sidebar-1-4">
+									aria-labelledby="sidebar-1-4" >
 									<div class="WritingHeader">
 										<h2 class="title">작품 등록</h2>
 										<div class="tool_area">
-											<a href="#" type="submit" role="button" class="BaseButton">등록</a>
+											<a href="#" type="submit" role="button" class="BaseButton"  >등록</a>
 										</div>
 									</div>
 									<div class="WritingContent">
@@ -728,11 +697,14 @@ input {
 
 
 											<div class="form-group">
-												<label>내용을 입력하세요.</label>
+
+
 												<!-- <textarea id="description" placeholder="작품 내용을 입력해 주세요."></textarea> -->
 												<!-- 스마트 에디터 텍스트 영역 -->
-												<iframe id="content" style="width: 100%; height: 400px; border: none;"></iframe>
-												<br> <input type="submit" value="작성 완료">
+												<label>내용을 입력하세요.</label>
+												<div id="content">ddddd</div>
+
+												<br> <!-- <input type="submit" value="작성 완료"> -->
 											</div>
 											<div class="form-group">
 												<label for="upload">사진 업로드</label> <input type="file"
@@ -741,7 +713,7 @@ input {
 										</form>
 									</div>
 								</div>
-
+ 
 
 
 								<!-- 작품정보 수정 -->
@@ -800,30 +772,7 @@ input {
 								</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 								<!-- 판매 내역 -->
 								<div class="tab-pane fade" id="sidebar-1-6" role="tabpanel"
 									aria-labelledby="sidebar-1-6">
@@ -1223,25 +1172,31 @@ input {
 	<script src="<c:url value='/resources/assets/js/app.js'/>"></script>
 	<!-- 네이버 에디터 2.0 -->
 	<script>
-		var oEditors = [];
-		nhn.husky.EZCreator
-				.createInIFrame({
-					oAppRef : oEditors,
-					elPlaceHolder : "content",
-					sSkinURI : "${pageContext.request.contextPath}/resources/static/workspace/static/SmartEditor2Skin.html",
-					htParams : {
-						bUseToolbar : true,
-						bUseVerticalResizer : true,
-						bUseModeChanger : true,
-						bUseFullScreen: true
-					}
+	
+	
+	   function aa(){ 
+		   alert("aa");
+		   var oEditors = [];
+			nhn.husky.EZCreator
+					.createInIFrame({
+						oAppRef : oEditors,
+						elPlaceHolder : "content",
+						sSkinURI : "${pageContext.request.contextPath}/resources/static/workspace/static/SmartEditor2Skin.html",
+						htParams : {
+							bUseToolbar : true,
+							bUseVerticalResizer : true,
+							bUseModeChanger : true,
+							bUseFullScreen : true
+						}
 
-				});
+					});
 
-		// 폼 제출 시 스마트 에디터 내용을 텍스트 영역에 반영
-		document.querySelector("form").addEventListener("submit", function(e) {
-			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-		});
+			// 폼 제출 시 스마트 에디터 내용을 텍스트 영역에 반영
+			document.querySelector("form").addEventListener("submit", function(e) {
+				oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+			});
+	   }
+		
 	</script>
 </body>
 </html>
