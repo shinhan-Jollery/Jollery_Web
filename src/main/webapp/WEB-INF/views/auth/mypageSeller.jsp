@@ -15,46 +15,6 @@
 
 <title>Profile</title>
 <style>
-/* 기본적으로 서브메뉴 숨기기 */
-.submenu {
-	display: none;
-	opacity: 0;
-	transition: opacity 0.3s ease-in-out;
-	background-color: #f8f9fa;
-	border: 1px solid #ddd;
-	margin-top: 5px;
-	border-radius: 5px;
-	padding: 0;
-}
-
-/* 판매자 페이지에 마우스 올리면 서브메뉴 표시 */
-.seller:hover .submenu {
-	display: block;
-	opacity: 1;
-}
-
-/* 서브메뉴 항목 스타일 */
-.submenu a {
-	display: block;
-	padding: 10px;
-	text-decoration: none;
-	color: #333;
-	transition: all 0.2s ease-in-out;
-}
-
-/* 호버 시 스타일 */
-.submenu a:hover {
-	background-color: #ddd;
-	color: #333;
-}
-
-/* 활성화 시 슬라이드 다운 */
-.nav-link.seller:hover .submenu {
-	display: block;
-	opacity: 1;
-	max-height: 500px; /* 적절히 큰 값 */
-	padding: 10px;
-}
 
 .custom-table {
 	border-collapse: collapse;
@@ -191,7 +151,7 @@
 							role="tab" aria-controls="sidebar-1-4" aria-selected="false">작품
 							등록</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-5"
 							role="tab" aria-controls="sidebar-1-5" aria-selected="false">판매
-							내역</a> <a class="nav-link" data-toggle="tab" href="#sidebar-1-6"
+							내역</a> <a class="nav-link" href="account"
 							role="tab" aria-controls="sidebar-1-6" aria-selected="false">정산</a>
 					</div>
 				</aside>

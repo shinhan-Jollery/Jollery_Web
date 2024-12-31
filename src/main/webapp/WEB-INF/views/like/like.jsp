@@ -112,7 +112,7 @@
 				<!--  sidebar -->
 				<aside class="col-lg-3">
 				    <div class="nav nav-pills flex-column lavalamp" id="sidebar-1" role="tablist">
-				        <a class="nav-link" data-toggle="tab" href="#sidebar-1-1" role="tab" aria-controls="sidebar-1-1">회원정보</a>
+				        <a class="nav-link" href="auth/infoUpdate" role="tab" aria-controls="sidebar-1-1">회원정보</a>
 				        <a class="nav-link" data-toggle="tab" href="#sidebar-1-2" role="tab" aria-controls="sidebar-1-2">주문내역</a>
 				        <a class="nav-link" data-toggle="tab" href="#sidebar-1-3" role="tab" aria-controls="sidebar-1-3">관심상품</a>
 				        <a class="nav-link" data-toggle="tab" href="#sidebar-1-4" role="tab" aria-controls="sidebar-1-4">판매자 인증</a>
