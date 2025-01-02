@@ -19,7 +19,7 @@ public class ArtDAOMybatis implements ArtDAOInterface {
 	// 작품 등록
 	@Override
 	public int insert(ArtsDTO art) {
-		int result = sqlSession.insert(namespace + "insertArt", art);
+		int result = sqlSession.insert(namespace + "insert", art);
 		log.info(result + "건 입력됨");
 		return result;
 	}
@@ -27,7 +27,7 @@ public class ArtDAOMybatis implements ArtDAOInterface {
 	// 작품 수정
 	@Override
 	public int update(ArtsDTO art) {
-		int result = sqlSession.update(namespace + "updateArt", art);
+		int result = sqlSession.update(namespace + "update", art);
 		log.info(result + "건 수정됨");
 		return result;
 	}
@@ -35,15 +35,16 @@ public class ArtDAOMybatis implements ArtDAOInterface {
 	// 작품 삭제
 	@Override
 	public int delete(int art_id) {
-		int result = sqlSession.delete(namespace + "deleteArt", art_id);
+		int result = sqlSession.delete(namespace + "delete", art_id);
 		log.info(result + "건 삭제됨");
 		return result;
 	}
 
-//	@Override
-//	public ArtsDTO selectByArtId(int art_id) {
-//		ArtsDTO art = sqlSession.selectOne(namespace + "selectById", art_id);
-//		
-//		return art;
-//	}
+	// 작품 상세
+	@Override
+	public ArtsDTO selectByArtId(int art_id) {
+		ArtsDTO art = sqlSession.selectOne(namespace + "selectById", art_id);
+		
+		return art;
+	}
 }

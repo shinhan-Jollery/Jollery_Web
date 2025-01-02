@@ -22,5 +22,11 @@ public class ArtConrtoller {
 	public String updatePage() {
 		return "art/artInsert";
 	}
+	
+	@GetMapping(value = "/art/detail")
+	public String detailPage() {
+		return "art/artDetail";
+	}
+	
 
 }

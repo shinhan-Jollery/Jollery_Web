@@ -653,8 +653,31 @@ input {
 									</div>
 								</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
- 							<!-- 작품 등록 class="tab-pane fade" -->
+ 							<!-- 작품 등록 -->
 								<div class="tab-pane fade" id="sidebar-1-4" role="tabpanel"
 									aria-labelledby="sidebar-1-4" >
 									<div class="WritingHeader">
@@ -770,6 +793,34 @@ input {
 										</form>
 									</div>
 								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
@@ -897,9 +948,6 @@ input {
 										</div>
 									</div>
 								</div>
-
-
-
 
 								<!-- payments -->
 								<div class="tab-pane fade" id="sidebar-1-7" role="tabpanel"

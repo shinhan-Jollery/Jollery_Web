@@ -23,4 +23,8 @@ public class ArtService {
 		return artDAO.delete(art_id);
 	}
 	
+	public ArtsDTO selectByArtIdService (int art_id) {
+		return artDAO.selectByArtId(art_id);
+	}
+	
 }

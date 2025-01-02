@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shinhan.VO.ArtsDTO;
 
 @RestController
-@RequestMapping
+@RequestMapping("/jollery/art")
 public class ArtRestController {
 	@Autowired
 	private ArtService artService;
 
-	@PostMapping(value = "/art", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "text/plain;charset=utf-8")
+	@PostMapping(value = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "text/plain;charset=utf-8")
 	public String insert(@RequestBody ArtsDTO art) {
 		int result = artService.insertService(art);
 		return result > 0 ? "등록 성공" : "등록 실패";

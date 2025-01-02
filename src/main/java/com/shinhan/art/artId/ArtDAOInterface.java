@@ -4,7 +4,7 @@ import com.shinhan.VO.ArtsDTO;
 
 public interface ArtDAOInterface {
 	
-//	public int selectByArtId(int art_id);
+	public ArtsDTO selectByArtId(int art_id);
 	
 	public int insert(ArtsDTO art);
 
