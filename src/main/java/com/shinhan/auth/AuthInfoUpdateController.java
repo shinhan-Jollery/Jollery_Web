@@ -1,7 +1,7 @@
 package com.shinhan.auth;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,13 @@ public class AuthInfoUpdateController {
 
     // 회원 정보 수정 페이지
     @GetMapping("/infoUpdate")
-    public String showInfoUpdatePage(HttpSession session, Model model) {
-        Integer memberId = (Integer) session.getAttribute("memberId");
-        if (memberId == null) {
-            return "auth/infoUpdate";
-        }
-
-        MembersDTO member = authInfoUpdateService.getMemberInfo(memberId);
-        model.addAttribute("member", member);
+    public String showInfoUpdatePage(HttpServletRequest request, Model model) {
+        
+        
+        int userId = (int) request.getAttribute("userId");
+        String memberName = (String) request.getAttribute("Member_name");
+        model.addAttribute("userId", userId);
+        model.addAttribute("memberName", memberName);
         return "auth/infoUpdate";
     }
 }
