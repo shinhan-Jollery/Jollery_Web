@@ -50,6 +50,7 @@ public class AuthRestController {
 			// JWT 생성
 			String token = Jwts.builder().setSubject(user.getMember_name()).claim("userId", user.getMember_id())
 					.claim("isArtist", user.getMember_is_artist()).claim("Member_name", user.getMember_name())
+					.claim("loginmemberDTO", user)
 					.setIssuedAt(new Date()) // 발급 시간
 					.setExpiration(new Date(System.currentTimeMillis() + 1000 * 3600))
 					.signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();

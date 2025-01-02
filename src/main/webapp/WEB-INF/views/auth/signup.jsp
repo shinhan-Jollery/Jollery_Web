@@ -14,7 +14,6 @@
 #email-otp-code {
 	width: 200px;
 }
-/* Reset */
 body {
 	font-family: Arial, sans-serif;
 	margin: 0;
@@ -361,8 +360,7 @@ label {
 						<!-- 마지막 번호 -->
 						<input type="text" id="phone-part3" name="phone-part3"
 							placeholder="" maxlength="4" oninput="validatePhonePart3(this)">
-						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰}
-							인증</button>
+						<button type="button" id="auth-button" onclick="smsPostcode()">휴대폰 인증</button>
 					</div>
 					<div class="phone-row2">
 						<!-- 인증번호 입력 영역 -->
@@ -414,12 +412,12 @@ label {
 
 
 						<!-- 인증번호 입력 영역 -->
-						<div class="emailotp-row" style="display: none; margin-top: 20px;">
-							<input type="text" id="email-otp-code"
-								placeholder="인증번호 입력 (6자리)" maxlength="6">
-							<button type="button" id="email-otp-submit-button"
-								onclick="submitEmailOTP()">제출</button>
-						</div>
+							<div class="emailotp-row" style="display: none; margin-top: 20px;">
+								<input type="text" id="email-otp-code"
+									placeholder="인증번호 입력 (6자리)" maxlength="6">
+								<button type="button" id="email-otp-submit-button"
+									onclick="submitEmailOTP()">제출</button>
+							</div>
 					</div>
 				</div>
 				<!-- 약관 동의 -->

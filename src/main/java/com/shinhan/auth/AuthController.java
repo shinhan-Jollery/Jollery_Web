@@ -25,7 +25,7 @@ public class AuthController {
 
 	@GetMapping("/signup")
 	public String signup(HttpSession session, HttpServletRequest request, Model model) {
-		int userId = (int) request.getAttribute("userId");
+		Integer userId = (Integer) request.getAttribute("userId");
 		String memberName = (String) request.getAttribute("Member_name");
 		model.addAttribute("userId", userId);
 		model.addAttribute("memberName", memberName);
@@ -36,5 +36,13 @@ public class AuthController {
 	public String login() {
 		return "auth/login";
 	}
-
+	
+	@GetMapping("/pwsearch")
+	public String pwsearch() {
+		return "auth/pwsearch";
+	}
+	@GetMapping("/idsearch")
+	public String idsearch() {
+		return "auth/idsearch";
+	}
 }
