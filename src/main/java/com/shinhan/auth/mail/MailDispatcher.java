@@ -33,8 +33,7 @@ public class MailDispatcher {
         message.setFrom(new InternetAddress(username)); // 보내는 이메일
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail)); // 받는 이메일
         message.setSubject(subject); // 제목
-        message.setText(content); // 본문 내용
-
+        message.setContent(content, "text/html; charset=utf-8");
         // 이메일 전송
         Transport.send(message);
     }
