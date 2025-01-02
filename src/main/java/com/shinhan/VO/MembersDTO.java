@@ -16,7 +16,8 @@ import lombok.ToString;
 @Setter
 @Getter
 
-// 9°³ Ä®·³
+
+// 9ï¿½ï¿½ Ä®ï¿½ï¿½
 public class MembersDTO {
 	int member_id;
 	String member_login_id;

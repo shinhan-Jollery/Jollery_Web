@@ -263,7 +263,7 @@ form {
 	</footer>
 	<script>
     document.getElementById("login-button").addEventListener("click", function () {
-        // 폼 데이터
+        // 폼 데이터 가져오기
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
 
@@ -273,7 +273,6 @@ form {
             password
         };
 
-        //
         fetch("<c:url value='/auth/login' />", {
             method: "POST",
             headers: {
@@ -283,16 +282,20 @@ form {
         })
         .then(response => response.json())
         .then(data => {
-        	console.log(data);
             if (data.status === 'success') { 
                 alert(data.message); 
-                window.location.href = "/jollery/main.do"; // 성공 시 메인 페이지로 이동
+
+                // 쿠키에 JWT 저장 (HttpOnly는 서버에서 설정해야 함)
+                document.cookie = `jwt=${data.token}; path=/; max-age=3600`; // 1시간 유효
+
+
+                // 메인 페이지로 이동
+                window.location.href = "/jollery/main.do";
             } else {
                 alert(data.message); 
             }
         })
         .catch(error => {
-   
             console.error("로그인 중 오류 발생:", error);
             alert("오류가 발생했습니다. 다시 시도해주세요.");
         });
