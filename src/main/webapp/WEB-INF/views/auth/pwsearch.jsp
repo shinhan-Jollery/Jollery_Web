@@ -4,7 +4,7 @@
 <html lang="ko">
 
 <meta charset="UTF-8">
-<title>본인확인 인증</title>
+<title>비밀번호 찾기</title>
 <style>
 /* 전체 페이지 스타일 */
 .header {
