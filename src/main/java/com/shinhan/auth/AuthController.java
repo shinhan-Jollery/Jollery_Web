@@ -45,4 +45,10 @@ public class AuthController {
 	public String idsearch() {
 		return "auth/idsearch";
 	}
+	@GetMapping("/resetpassword")
+	public String resetpassword(HttpServletRequest request,Model model) {
+		String uuid = request.getParameter("uuid");
+		model.addAttribute("uuid", uuid);
+		return "auth/resetpassword";
+	}
 }

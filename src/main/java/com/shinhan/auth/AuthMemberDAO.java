@@ -17,4 +17,7 @@ public class AuthMemberDAO {
     public MembersDTO getMemberByLoginId(String member_login_ID) {
         return sqlSession.selectOne("com.shinhan.member.selectMemberById", member_login_ID);
     }
+	public MembersDTO getMemberPWByEmail(String email) {
+		return sqlSession.selectOne("com.shinhan.member.selectMemberByEmail", email);
+	}
 }

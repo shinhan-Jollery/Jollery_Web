@@ -247,8 +247,7 @@ button:hover {
         const result = await response.json();
         alert(result.message);
         if (result.status === "success") {
-            // 인증번호 입력 필드 보이기
-
+        	window.location.href = "/jollery/main.do";
         }
     }
 </script>

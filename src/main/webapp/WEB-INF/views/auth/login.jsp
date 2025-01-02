@@ -126,7 +126,7 @@ form {
 
 				<!-- 추가 링크 -->
 				<div class="links">
-					<a href=<c:url value='/auth/idsearch' />>아이디찾기</a> | <a href=<c:url value='/auth/pwSearch' />>비밀번호찾기</a>
+					<a href=<c:url value='/auth/idsearch' />>아이디 찾기</a> | <a href=<c:url value='/auth/pwsearch' />>비밀번호 찾기</a>
 					| <a href="<c:url value='/auth/signup'/>">회원가입</a>
 				</div>
 			</form>

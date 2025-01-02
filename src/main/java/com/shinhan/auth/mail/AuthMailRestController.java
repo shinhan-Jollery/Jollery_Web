@@ -1,19 +1,23 @@
 package com.shinhan.auth.mail;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.*;
-
-import com.shinhan.VO.MembersDTO;
-import com.shinhan.auth.AuthService;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shinhan.VO.MembersDTO;
+import com.shinhan.auth.AuthInfoUpdateService;
+import com.shinhan.auth.AuthService;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthMailRestController {
-
+	@Autowired
+	AuthInfoUpdateService authInfoUpdateService;
 	@Autowired
 	AuthMailService authMailService;
 	@Autowired
@@ -50,4 +54,13 @@ public class AuthMailRestController {
 		String code = request.get("code");
 		return authService.verifyByLoginId_name(member_login_ID, member_name, code);
 	}
+	// 인증 코드 확인
+
+    @PostMapping("/changePW")
+    public Map<String, Object> changePW(@RequestBody Map<String, String> request) {
+        String memberpassword = request.get("memberpassword");
+        String uuid = request.get("uuid");
+        // 서비스 호출
+        return authService.changePassword(memberpassword, uuid);
+    }
 }
