@@ -8,16 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-	// 나중에 mypage는 따로 빼고 필터로 로그인 상태인데
-	// auth 접근 하면 마이페이지나 메인 페이지로 다튕기게 해서 이중 로그인 막기
 	@GetMapping("mypage.do")
 	public String mypage() {
 		return "auth/mypage";
