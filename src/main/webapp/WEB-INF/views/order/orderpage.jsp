@@ -383,8 +383,7 @@ label {
 				<!-- 배송지 선택 -->
 				<div class="radio-group">
 				    <label>
-				        <input type="radio" name="address-option" value="same" checked> 회원 정보와 동일
-				    </label>
+				        <input type="radio" name="address-option" value="same" checked>최근 배송지</label>
 				    <label>
 				        <input type="radio" name="address-option" value="new"> 새로운 배송지
 				    </label>
