@@ -73,7 +73,7 @@
 						id="navbarMenu2">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href=<c:url value='/auth/login' />>로그인</a></li>
-							<li class="nav-item"><a class="nav-link" href="관심목록"><i class="icon-heart"></i></a></li>
+							<li class="nav-item"><a class="nav-link" href="/jollery/like"><i class="icon-heart"></i></a></li>
 							<li class="nav-item cart"><a data-toggle="modal"
 								data-target="#cart" class="nav-link"><span>Cart</span><span>2</span></a>
 							</li>

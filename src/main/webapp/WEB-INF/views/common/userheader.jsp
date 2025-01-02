@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>header</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="row">
 				<nav class="navbar navbar-expand-lg navbar-dark">
-					<a href="main.do" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
+					<a href="/jollery/main.do" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
 					<button class="navbar-toggler order-2" type="button"
 						data-toggle="collapse" data-target=".navbar-collapse"
 						aria-controls="navbarMenu" aria-expanded="false"
@@ -89,10 +89,10 @@
 								aria-expanded="false"> ${memberName}</a> <!-- ${sessionScope.user.name} ! -->
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="userDropdown">
-									<a class="dropdown-item" href="profile.html">회원정보</a> <br>
-									<a class="dropdown-item" href="profile-orders.html">주문내역</a> <br>
-									<a class="dropdown-item" href="wishlist.html">관심상품</a> <br>
-									<a class="dropdown-item" href="seller-auth.html">판매자 인증</a>
+									<a class="dropdown-item" href="/jollery/auth/infoUpdate">회원정보</a> <br>
+									<a class="dropdown-item" href="/jollery/order/list">주문내역</a> <br>
+									<a class="dropdown-item" href="/jollery/like">관심상품</a> <br>
+									<a class="dropdown-item" href="/jollery">판매자 인증</a>
 								</div></li>
 							<!-- 로그아웃 버튼 -->
 							
@@ -100,7 +100,7 @@
 								href="javascript:logout()">로그아웃</a></li>
 							</li>
 							<!-- 관심상품 -->
-							<li class="nav-item"><a class="nav-link" href="관심목록"><i
+							<li class="nav-item"><a class="nav-link" href="/jollery/like"><i
 									class="icon-heart"></i></a></li>
 							<!-- 장바구니 -->
 							<li class="nav-item cart"><a data-toggle="modal"
