@@ -53,6 +53,7 @@ public class JWT2RequestFilter implements Filter {
 
                 // JWT포장 뜯고 Request에 넣기
                 String Member_name = claims.getSubject();
+                httpRequest.setAttribute("loginmemberDTO", claims.get("loginmemberDTO"));
                 httpRequest.setAttribute("userId", claims.get("userId"));
                 httpRequest.setAttribute("Member_name", Member_name);
             } catch (Exception e) {
