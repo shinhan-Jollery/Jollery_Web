@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/auth")
 public class AccountController {
+	
+	
+	
 	@GetMapping("/account")
 	public String getAccount(HttpSession session, Model model) {
 		return "account/account";
 	}
+	
 }

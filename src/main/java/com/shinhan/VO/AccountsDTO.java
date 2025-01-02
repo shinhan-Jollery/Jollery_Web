@@ -1,6 +1,7 @@
 package com.shinhan.VO;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,5 +19,5 @@ public class AccountsDTO {
 	String account_number;
 	int member_id;
 	String account_bank;
-	LocalDateTime account_registor_date;
+	Date account_register_date;
 }

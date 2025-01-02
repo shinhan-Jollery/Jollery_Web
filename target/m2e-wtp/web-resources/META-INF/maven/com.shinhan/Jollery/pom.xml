@@ -17,6 +17,7 @@
 	</properties>
 
 	<dependencies>
+
 	<!-- jBCrypt -->
 		<dependency>
 			<groupId>org.mindrot</groupId>

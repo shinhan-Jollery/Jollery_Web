@@ -108,4 +108,7 @@ public class AuthInfoUpdateRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("success", false, "message", "회원 정보를 찾을 수 없습니다."));
         }
     }
+    
+  
+
 }
