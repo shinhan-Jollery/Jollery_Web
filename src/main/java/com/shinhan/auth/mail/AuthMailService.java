@@ -61,6 +61,35 @@ public class AuthMailService {
 		return response;
 	}
 	/**
+	 * 로그인 ID를 회원에게 메일로 전송
+	 * @param email
+	 * @return 메세지와 성공 여부
+	 */
+	public Map<String, Object> sendEmailwithloginID(String email,MembersDTO member) {
+		Map<String, Object> response = new HashMap<>();
+		try {
+			String login_ID = member.getMember_login_id();
+			MailDispatcher.sendMail(
+				    email,
+				    "Jollery 이메일 인증",
+				    "<html>" +
+				        "<body>" +
+				            "<p>안녕하세요 jollery입니다,</p>" +
+				            "<p>회원 님의 ID는 다음과 같습니다 : "+login_ID+" 항상 이용해 주셔서 감사합니다.</p>" +
+				            "<p>감사합니다.</p>" +
+				        "</body>" +
+				    "</html>"
+				);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+
+		}
+		response.put("message", "메일로 ID를 발송했습니다.");
+		response.put("status", "success");
+		System.out.println("sendEmail"+response);
+		return response;
+	}
+	/**
 	 * 비밀번호 초기화 링크를 만들어서 메일로 전송
 	 * @param email
 	 * @return 메세지와 성공 여부
@@ -132,4 +161,43 @@ public class AuthMailService {
 		}
 		return response;
 	}
+	/**
+	 * email이랑 코드 이름 받으면 각각 확인해서 login id 보내주기
+	 * @param memberName
+	 * @param email
+	 * @param code
+	 * @return 각각 status
+	 */
+	public Map<String, Object> verifyAndSendId(String memberName, String email, String code) {
+        Map<String, Object> response = new HashMap<>();
+
+        //  이메일과 인증 코드 검증
+        Map<String, Object> verificationResult = verifyCode(email, code);
+        if (!verificationResult.get("status").equals("success")) {
+            response.put("message", "인증번호가 일치하지 않습니다.");
+            response.put("status", "error");
+            return response;
+        }
+
+        //이메일로 회원 정보 조회
+        MembersDTO member = authService.getMemberPWByEmail(email);
+        if (member == null) {
+            response.put("message", "해당 이메일로 등록된 회원이 없습니다.");
+            response.put("status", "error");
+            return response;
+        }
+
+        //이름 검증
+        if (!member.getMember_name().equals(memberName)) {
+            response.put("message", "이메일과 이름이 일치하지 않습니다.");
+            response.put("status", "error");
+            return response;
+        }
+
+        // 이메일로 ID 전송
+        sendEmailwithloginID(email, member);
+        response.put("message", "아이디가 이메일로 전송되었습니다.");
+        response.put("status", "success");
+        return response;
+    }
 }
