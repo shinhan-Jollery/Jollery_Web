@@ -3,6 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
-
+<mapper namespace="com.shinhan.chatRoom">
+	<!-- 새로운 채팅방 생성 -->
+	<insert id="createRoom" parameterType="ChatRoomsVO">
+		INSERT INTO chat_rooms
+		(member_id, art_id)
+		VALUES (#{member_id}, #{art_id})
+	</insert>
+	
+	<!-- 사용자의 채팅방 목록 조회 -->
+	<select id="getRoomListByMember" parameterType="int"
+		resultType="ChatRoomsVO">
+		SELECT DISTINCT r.*
+		FROM chat_rooms r JOIN arts a ON r.art_id = a.art_id
+		WHERE r.member_id = #{member_id} OR a.member_id = #{member_id}
+	</select>
+	
+	<!-- 채팅방 정보 조회-->
+	<select id="getChatRoomInfo" parameterType="int"
+		resultType="ChatRoomsVO">
+		SELECT *
+        FROM chat_rooms
+        WHERE room_id = #{room_id};
+	</select>
+	
+	<!-- member_id로 이름 조회 -->
+    <select id="getNameByMemberId" parameterType="int" resultType="String">
+        SELECT member_name
+        FROM members
+        WHERE member_id = #{member_id};
+    </select>
+    
+    <!-- art_id로 이름 조회 -->
+    <select id="getNameByArtId" parameterType="int" resultType="String">
+        SELECT m.member_name
+        FROM arts a JOIN members m ON a.member_id = m.member_id
+        WHERE a.art_id = #{art_id};
+    </select>
+    
+    <!-- 채팅 상대방 차단 -->
+	<select id="blockMember" parameterType="BlocksVO"
+		resultType="int">
+		INSERT INTO blocks
+		(member_id, block_id)
+		VALUES (#{member_id}, #{block_id})
+	</select>
+	
+	<!-- 사용자의 차단 목록 조회-->
+	<select id="getBlockListByMember" parameterType="int"
+		resultType="BlocksVO">
+		SELECT b.block_id
+        FROM blocks b
+        WHERE b.member_id = #{member_id};
+	</select>
+	
 </mapper>

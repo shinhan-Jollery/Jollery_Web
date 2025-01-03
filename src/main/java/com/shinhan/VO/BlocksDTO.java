@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Setter
 @Getter
-public class BansDTO {
-	int art_id;
+public class BlocksDTO {
 	int member_id;
+	int block_id;
 }
