@@ -14,6 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ChatRoomsDTO {
+	int room_id;
 	int member_id;
 	int art_id;
 }

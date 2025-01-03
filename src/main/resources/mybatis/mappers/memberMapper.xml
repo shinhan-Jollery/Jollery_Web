@@ -46,6 +46,12 @@
         FROM members 
         WHERE member_id = #{member_ID}
     </select>
+        <!-- 멤버 email로 회원 조회 -->
+    <select id="selectMemberByEmail" parameterType="string" resultType="com.shinhan.VO.MembersDTO">
+        SELECT * 
+        FROM members 
+        WHERE member_email = #{member_email}
+    </select>
 
     <!--회원 정보 수정 null값이면 원래데이터유지 -->
     <update id="updateMember" parameterType="com.shinhan.VO.MembersDTO">

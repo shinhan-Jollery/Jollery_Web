@@ -20,17 +20,16 @@ body {
 }
 
 main {
-    display: flex; /* Flexbox 활성화 */
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    min-height: 100vh; /* 화면 전체 높이 */
-    background-color: #f7f7f7; /* 배경색 */
-    padding: 150px 0 50px; /* 헤더 높이와 하단 여백 */
+	display: flex; /* Flexbox 활성화 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
+	min-height: 100vh; /* 화면 전체 높이 */
+	background-color: #f7f7f7; /* 배경색 */
+	padding: 150px 0 50px; /* 헤더 높이와 하단 여백 */
 }
 /* 인증 컨테이너 스타일 */
 .verification-container {
-
-	max-width: 550px;
+	max-width: 800px;
 	background-color: #ffffff; /* 흰색 배경 */
 	padding: 50px;
 	border-radius: 10px; /* 둥근 모서리 */
@@ -40,7 +39,6 @@ main {
 	flex-direction: column; /* 세로 방향 배치 */
 	align-items: center; /* 가로 중앙 정렬 */
 	margin: 20px auto; /* 추가 중앙 정렬 */
-	
 }
 
 .verification-container h2 {
@@ -48,31 +46,30 @@ main {
 	margin-bottom: 20px; /* 아래 여백 */
 }
 
-
-
-
 .input-group label {
-    font-size: 14px; /* 글자 크기 */
-    margin-bottom: 5px; /* 아래 여백 */
-    text-align: left; /* 라벨 텍스트 왼쪽 정렬 */
-    font-weight: bold; /* 강조된 스타일 */
-    line-height: 1.2; /* 텍스트 간격 조정 */
+	font-size: 14px; /* 글자 크기 */
+	margin-bottom: 5px; /* 아래 여백 */
+	text-align: left; /* 라벨 텍스트 왼쪽 정렬 */
+	font-weight: bold; /* 강조된 스타일 */
+	line-height: 1.2; /* 텍스트 간격 조정 */
 }
-.input-group2{
-    font-size: 14px; /* 글자 크기 */
-    margin-bottom: 5px; /* 아래 여백 */
-    text-align: center; /* 라벨 텍스트 왼쪽 정렬 */
-    font-weight: bold; /* 강조된 스타일 */
-    line-height: 1.2; /* 텍스트 간격 조정 */
+
+.input-group2 {
+	font-size: 14px; /* 글자 크기 */
+	margin-bottom: 5px; /* 아래 여백 */
+	text-align: center; /* 라벨 텍스트 왼쪽 정렬 */
+	font-weight: bold; /* 강조된 스타일 */
+	line-height: 1.2; /* 텍스트 간격 조정 */
 }
 /* Form Elements */
 .input-group {
-    margin-bottom: 20px; /* 그룹 간격 */
-    display: flex; /* Flexbox 활성화 */
-    flex-direction: column; /* 세로 방향 배치 */
-    align-items: flex-start; /* 왼쪽 정렬 */
-    width: 100%; /* 부모 요소의 너비를 확장 */
+	margin-bottom: 20px; /* 그룹 간격 */
+	display: flex; /* Flexbox 활성화 */
+	flex-direction: column; /* 세로 방향 배치 */
+	align-items: flex-start; /* 왼쪽 정렬 */
+	width: 100%; /* 부모 요소의 너비를 확장 */
 }
+
 .input-group input, .form-group select, .form-group textarea {
 	padding: 10px;
 	font-size: 14px;
@@ -86,17 +83,16 @@ main {
 }
 
 input[type="text"] {
-    width: 300px; /* 입력 필드 너비 */
-    padding: 8px; /* 내부 여백 */
-    font-size: 14px; /* 글자 크기 */
-    border: 1px solid #ccc; /* 테두리 색상 */
-    border-radius: 5px; /* 둥근 모서리 */
-    margin: 0; /* 추가 여백 제거 */
-    box-sizing: border-box; /* 전체 박스 모델 적용 */
+	width: 200px; /* 입력 필드 너비 */
+	padding: 8px; /* 내부 여백 */
+	font-size: 14px; /* 글자 크기 */
+	border: 1px solid #ccc; /* 테두리 색상 */
+	border-radius: 5px; /* 둥근 모서리 */
+	margin: 0; /* 추가 여백 제거 */
+	box-sizing: border-box; /* 전체 박스 모델 적용 */
 }
 
 button {
- 
 	display: block; /* 블록 요소로 변환 */
 	width: 100px;
 	padding: 10px; /* 내부 여백 */
@@ -113,7 +109,6 @@ button:hover {
 }
 
 .phone-row2 {
-
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -136,17 +131,54 @@ button:hover {
 	margin-bottom: 5px;
 	flex-shrink: 0; /* 버튼 크기 고정 */
 }
+
 .verification-button {
-  display: block; /* 블록 요소로 변환 */
-  margin-left: 100px;	`--
-  width: 100px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: white;
-  border: 1px solid #ddd;
-  color: black;
-  border-radius: 5px;
-  cursor: pointer;
+	display: block; /* 블록 요소로 변환 */
+	margin-left: 100px; `--
+	width: 100px;
+	padding: 10px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #ddd;
+	color: black;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.email-row {
+	margin-right: 150px;
+	display: flex;
+	gap: 10px; /* 각 요소 간격 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+
+.email-row select {
+	width: 150px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.email-row input {
+	width: 200px;
+	height: 38px;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.email-row button {
+	margin-top: 5px;
+	margin-left: 15px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	height: 40px;
+	margin-bottom: 5px;
 }
 </style>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -164,48 +196,78 @@ button:hover {
 		<div class="verification-container">
 			<h2>내 아이디 찾기</h2>
 			<form id="signup-form" style="margin-left: 80px;">
-			<!-- 이름 입력 -->
-			<div class="input-group" >
-				<label for="membername">이름</label> <input type="text"
-					id="membername" placeholder="이름을 입력하세요">
-			</div>
+				<!-- 이름 입력 -->
+				<div class="input-group">
+					<label for="membername">이름</label> <input type="text"
+						id="membername" placeholder="이름을 입력하세요">
+				</div>
 
-			<!-- 아이디 입력 -->
-			<div class="input-group">
-				<label for="memberid">아이디</label> <input type="text" id="memberid"
-					placeholder="이메일을 입력하세요">
-			</div>
+				<!-- 이메일 입력 -->
+				<div class="input-group">
+					<label for="memberid">이메일</label>
+					<div class="email-row">
+						<input type="text" id="email-prefix" name="email-prefix"
+							placeholder="Email" style="flex-grow: 1; height: 40px;">
+						<span style="line-height: 1;">@</span>
+						<!-- 이메일 도메인 선택 -->
+						<select id="email-domain" name="email-domain"
+							style="flex-grow: 1; height: 40px;">
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="custom">직접 입력</option>
+						</select>
+						<!-- 인증 버튼 -->
+						<button class="verification-button" style="width: 150px;" type="button" id="auth-button" onclick="sendMemberEmail()">이메일
+							인증</button>
+					</div>
+				</div>
+				<div class="email-row">
+					<!-- 사용자 입력 -->
+					<input type="text" id="custom-email-domain"
+						name="custom-email-domain" placeholder="직접 입력"
+						style="margin-top: 10px; display: none;">
+					<script>
+        document.getElementById("email-domain").addEventListener("change", function() {
+            const customField = document.getElementById("custom-email-domain");
+            if (this.value === "custom") {
+                customField.style.display = "block";
+            } else {
+                customField.style.display = "none";
+            }
+        });
+    </script>
 
-			<!-- 이메일 인증 버튼 -->
-
-			<button class="verification-button" style="width: 150px;" type="button" id="auth-button"
-				onclick="sendMemberEmail()">
-				이메일 인증</button>
-
-			<!-- 인증번호 입력 -->
-			<div class="phone-row2" style="margin-top: 20px;">
-				<input type="text" id="memberemail-otp-code"
-					placeholder="인증번호 입력 (6자리)" maxlength="6">
-				<button type="button" id="member-otp-submit-button"
-					onclick="submitMemberEmailOTP()">제출</button>
-			</div>
+			
+					<!-- 인증번호 입력 -->
+					<div class="phone-row2" style="margin-top: 20px; display: none;">
+						<input type="text" id="memberemail-otp-code"
+							placeholder="인증번호 입력 (6자리)" maxlength="6">
+						<button type="button" id="member-otp-submit-button"
+							onclick="submitMemberEmailOTP()">제출</button>
+					</div>
+				</div>
 			</form>
 		</div>
-	
+
 	</main>
 </body>
 <script>
     // 이메일 인증 요청
     async function sendMemberEmail() {
     	const membername = document.getElementById("membername").value.trim();
-        const memberid = document.getElementById("memberid").value.trim();
+        const emailPrefix = document.getElementById("email-prefix").value;
+        const emailDomain = document.getElementById("email-domain").value;
+        const customDomain = document.getElementById("custom-email-domain").value;
+
+        const email = `\${emailPrefix}@\${customDomain}\${emailDomain}`;
 
         // JSON 변환
         const bodydata = {
         		membername,
-        		memberid
+        		email
         };
-        const response = await fetch('/jollery/auth/sendMemberEmail', {
+        const response = await fetch('/jollery/auth/sendMemberEmailbyName', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -219,24 +281,28 @@ button:hover {
 
         if (result.status === "success") {
             // 인증번호 입력 필드 보이기
-        	document.querySelector('.emailotp-row').style.display = 'flex';
+        	document.querySelector('.phone-row2').style.display = 'flex';
         }
     }
 
     // 인증 코드 제출
     async function submitMemberEmailOTP() {
     	const membername = document.getElementById("membername").value.trim();
-        const memberid = document.getElementById("memberid").value.trim();
+        const emailPrefix = document.getElementById("email-prefix").value;
+        const emailDomain = document.getElementById("email-domain").value;
+        const customDomain = document.getElementById("custom-email-domain").value;
+
+        const email = `\${emailPrefix}@\${customDomain}\${emailDomain}`;
         const code = document.getElementById("memberemail-otp-code").value;
         // JSON 변환
         const bodydata = {
         		membername,
-        		memberid,
+        		email,
         		code
         };
         
 
-        const response = await fetch('/jollery/auth/MemberverifyCode', {
+        const response = await fetch('/jollery/auth/verifyandSendId', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -247,7 +313,8 @@ button:hover {
         const result = await response.json();
         alert(result.message);
         if (result.status === "success") {
-            // 인증번호 입력 필드 보이기
+                // 메인 페이지로 이동
+                window.location.href = "/jollery/main.do";
 
         }
     }

@@ -25,7 +25,7 @@
 			alias="OrderItemsVO" />
 		<typeAlias type="com.shinhan.VO.OrdersDTO" alias="OrdersVO" />
 		<typeAlias type="com.shinhan.VO.CartsDTO" alias="CartsVO" />
-		<typeAlias type="com.shinhan.VO.BansDTO" alias="BansVO" />
+		<typeAlias type="com.shinhan.VO.BlocksDTO" alias="BlocksVO" />
 		<typeAlias type="com.shinhan.VO.LikesDTO" alias="LikesVO" />
 		<typeAlias type="com.shinhan.VO.AccountsDTO"
 			alias="AccountsVO" />
