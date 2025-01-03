@@ -26,6 +26,7 @@ public class MembersDTO {
 	Date member_birth;
 	String member_phone;
 	String member_address;
+	String member_address_detail;
 	String member_email;
 	String member_is_artist;
 }

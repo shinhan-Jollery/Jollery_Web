@@ -1,5 +1,6 @@
 package com.shinhan.VO;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -15,13 +16,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @Setter
 @Getter 
-// 7°³ Ä®·³
+
 public class ChatsDTO {
 	int chat_id;
+	int room_id;
 	int member_id;
-	int art_id;
-	String chat_message1;
-	String chat_message2;
-	LocalDateTime chat_time;
+	String chat_message;
 	String chat_image;
+	Timestamp chat_time;
 }

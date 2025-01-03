@@ -1,5 +1,6 @@
 package com.shinhan.account;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,12 @@ public class AccountController {
 	
 	
 	@GetMapping("/account")
-	public String getAccount(HttpSession session, Model model) {
+	public String getAccount(HttpServletRequest request, Model model) {
+		
+		int userId = (int) request.getAttribute("userId");
+        String memberName = (String) request.getAttribute("Member_name");
+        model.addAttribute("userId", userId);
+        model.addAttribute("memberName", memberName);
 		return "account/account";
 	}
 	

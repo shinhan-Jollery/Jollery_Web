@@ -20,7 +20,7 @@ import lombok.ToString;
 public class ArtsDTO {
 	int art_id;
 	int member_id;
-	int category_id;
+	int mini_category_id;
 	String art_title;
 	int art_price;
 	String art_description;

@@ -8,16 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-	// 나중에 mypage는 따로 빼고 필터로 로그인 상태인데
-	// auth 접근 하면 마이페이지나 메인 페이지로 다튕기게 해서 이중 로그인 막기
 	@GetMapping("mypage.do")
 	public String mypage() {
 		return "auth/mypage";
@@ -30,7 +25,7 @@ public class AuthController {
 
 	@GetMapping("/signup")
 	public String signup(HttpSession session, HttpServletRequest request, Model model) {
-		int userId = (int) request.getAttribute("userId");
+		Integer userId = (Integer) request.getAttribute("userId");
 		String memberName = (String) request.getAttribute("Member_name");
 		model.addAttribute("userId", userId);
 		model.addAttribute("memberName", memberName);
@@ -41,5 +36,19 @@ public class AuthController {
 	public String login() {
 		return "auth/login";
 	}
-
+	
+	@GetMapping("/pwsearch")
+	public String pwsearch() {
+		return "auth/pwsearch";
+	}
+	@GetMapping("/idsearch")
+	public String idsearch() {
+		return "auth/idsearch";
+	}
+	@GetMapping("/resetpassword")
+	public String resetpassword(HttpServletRequest request,Model model) {
+		String uuid = request.getParameter("uuid");
+		model.addAttribute("uuid", uuid);
+		return "auth/resetpassword";
+	}
 }

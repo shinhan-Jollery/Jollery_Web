@@ -5,4 +5,66 @@
 
 <mapper namespace="com.shinhan.art">
 
+
+	<!-- 특정id 아트 상세 조회 -->
+	<select id="selectByArtId" parameterType="int" resultType="artsVO">
+		select *
+		from arts
+		where art_id = #{aa}
+	</select>
+
+
+	<insert id="insert" parameterType="artsVO">
+		insert into arts (
+		member_ID,
+		mini_category_ID, art_title, art_price, art_description, art_status,
+		art_like, art_view, art_post_date, art_size, art_thumbnail_image, art_hovering_image,
+		art_image2, art_image3, art_image4, art_image5
+		) values(
+		#{member_ID},
+		#{mini_category_ID},
+		#{art_title},
+		#{art_price},
+		#{art_description},
+		#{art_status},
+		#{art_like},
+		#{art_view},
+		#{art_post_date},
+		#{art_size},
+		#{art_thumbnail_image},
+		#{art_hovering_image},
+		#{art_image2},
+		#{art_image3},
+		#{art_image4},
+		#{art_image5}
+		);
+	</insert>
+	
+	<update id="update" parameterType="artsVO">
+		update arts set
+		mini_category_ID=#{mini_category_ID},
+		art_title=#{art_title},
+		art_price=#{art_price},
+		art_description=#{art_description},
+		art_status=#{art_status},
+		art_size=#{art_size},
+		art_thumbnail_image=#{art_thumbnail_image},
+		art_hovering_image=#{art_hovering_image},
+		art_image2=#{art_image2},
+		art_image3=#{art_image3},
+		art_image4=#{art_image4},
+		art_image5=#{art_image5}
+		where
+		art_id=#{art_id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete
+		from arts
+		where
+		art_id =
+		#{art_id}
+	</delete>
+
+
 </mapper>

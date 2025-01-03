@@ -37,5 +37,6 @@ public class AuthInfoUpdateDAO {
 		System.out.println("Params for MyBatis query: " + params);
 		return sqlSession.selectOne(namespace + ".checkPassword", params);
 	}
+	
 
 }
