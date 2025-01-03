@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!doctype html>
 
 <html lang="en">
@@ -21,12 +21,15 @@
 <body>
 
 	<script src="https://js.tosspayments.com/v2/standard"></script>
-	<!-- header -->
+
+
+
+	<!-- 로그인후 header -->
 	<header class="header header-dark header-sticky">
 		<div class="container">
 			<div class="row">
 				<nav class="navbar navbar-expand-lg navbar-dark">
-					<a href="index.html" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
+					<a href="main.do" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
 					<button class="navbar-toggler order-2" type="button"
 						data-toggle="collapse" data-target=".navbar-collapse"
 						aria-controls="navbarMenu" aria-expanded="false"
@@ -88,6 +91,114 @@
 						</ul>
 					</div>
 
+
+
+
+					<!-- 회원 정보, 로그아웃, 관심상품, 장바구니 -->
+					<div class="collapse navbar-collapse order-4 order-lg-3"
+						id="navbarMenu2">
+						<ul class="navbar-nav ml-auto">
+							<!-- 회원 정보 드롭다운 -->
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#!" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">류혜진 님</a> <!-- ${sessionScope.user.name} ! -->
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="profile.html">회원정보</a> <br>
+									<a class="dropdown-item" href="profile-orders.html">주문내역</a> <br>
+									<a class="dropdown-item" href="wishlist.html">관심상품</a> <br>
+									<a class="dropdown-item" href="seller-auth.html">판매자 인증</a>
+								</div></li>
+							<!-- 로그아웃 버튼 -->
+							<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a>
+							</li>
+							<!-- 관심상품 -->
+							<li class="nav-item"><a class="nav-link" href="관심목록"><i
+									class="icon-heart"></i></a></li>
+							<!-- 장바구니 -->
+							<li class="nav-item cart"><a data-toggle="modal"
+								data-target="#cart" class="nav-link"> <span>Cart</span><span>2</span>
+							</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+
+
+
+
+
+
+	<!-- header 
+	<header class="header header-dark header-sticky">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-expand-lg navbar-dark">
+					<a href="index.html" class="navbar-brand order-1 order-lg-2">JOLLERY</a>
+					<button class="navbar-toggler order-2" type="button"
+						data-toggle="collapse" data-target=".navbar-collapse"
+						aria-controls="navbarMenu" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse order-3 order-lg-1"
+						id="navbarMenu">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item dropdown megamenu"><a
+								class="nav-link dropdown-toggle" href="#!" id="navbarDropdown-4"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">CATEGORIES</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown-4">
+									<div class="row">
+										<ul class="col-6 col-md-3 col-lg-2">
+											<li><span class="megamenu-title">회화</span></li>
+											<li><a class="dropdown-item" href="index.html">동양화</a></li>
+											<li><a class="dropdown-item" href="index-carousel.html">서양화</a></li>
+											<li><a class="dropdown-item"
+												href="index-categories.html">판화</a></li>
+											<li><a class="dropdown-item" href="index-modern.html">혼합(기타)</a></li>
+										</ul>
+										<ul class="col-6 col-md-3 col-lg-2">
+											<li><span class="megamenu-title">조소</span></li>
+											<li><a class="dropdown-item" href="product-classic.html">석재</a></li>
+											<li><a class="dropdown-item" href="product-scroll.html">목재</a></li>
+											<li><a class="dropdown-item" href="product-masonry.html">금속</a></li>
+											<li><a class="dropdown-item" href="product-modern.html">3D프린팅</a></li>
+											<li><a class="dropdown-item" href="product-promo.html">혼합재료(기타)</a></li>
+										</ul>
+										<ul class="col-6 col-md-3 col-lg-2">
+											<li><span class="megamenu-title">공예</span></li>
+											<li><a class="dropdown-item" href="portal.html">도예</a></li>
+											<li><a class="dropdown-item" href="profile.html">유리공예</a></li>
+											<li><a class="dropdown-item" href="profile-orders.html">금속공예</a></li>
+											<li><a class="dropdown-item"
+												href="profile-addresses.html">목공예</a></li>
+											<li><a class="dropdown-item"
+												href="profile-payments.html">혼합재료(기타)</a></li>
+										</ul>
+										<ul class="col-6 col-md-3 col-lg-2">
+											<li><span class="megamenu-title">기타</span></li>
+											<li><a class="dropdown-item" href="about.html">사진</a></li>
+											<li><a class="dropdown-item" href="contact.html">설치미술</a></li>
+											<li><a class="dropdown-item" href="faq.html">서예</a></li>
+											<li><a class="dropdown-item" href="text.html">실험예술(기타)</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<!-- 검색창 추가 -->
+	<!--<form class="search-bar" action="/search" method="GET">
+								<div class="search-container">
+									<i class="icon-search"></i> <input type="text" name="query"
+										placeholder="Search..." />
+								</div>
+							</form>
+						</ul>
+					</div>
+
 					<div class="collapse navbar-collapse order-4 order-lg-3"
 						id="navbarMenu2">
 						<ul class="navbar-nav ml-auto">
@@ -102,13 +213,12 @@
 				</nav>
 			</div>
 		</div>
-	</header>
+	</header> -->
 
 	<!-- main -->
 	<section class="breadcrumbs bg-light">
-	 <button id="open-popup" class="btn btn-primary">결제하기
-	 </button>
-	    <%--     <iframe src="<c:url value='/resources/toss/checkout.jsp' />" width="100%" height="800px" frameborder="0"></iframe> --%>
+		<button id="open-popup" class="btn btn-primary">결제하기</button>
+		<%--     <iframe src="<c:url value='/resources/toss/checkout.jsp' />" width="100%" height="800px" frameborder="0"></iframe> --%>
 	</section>
 
 
@@ -445,26 +555,34 @@
 
 	<script src="<c:url value='/resources/assets/js/vendor.min.js' />"></script>
 	<script src="<c:url value='/resources/assets/js/app.js' />"></script>
-<script>
-document.getElementById("open-popup").addEventListener("click", function () {
-    const popupWidth = Math.min(window.innerWidth *0.8, 1500);
-    const popupHeight = Math.min(window.innerHeight * 0.8, 1500);
-    const left = window.screenX + (window.innerWidth - popupWidth) / 2;
-    const top = window.screenY + (window.innerHeight - popupHeight) / 2;
-    console.log(window.innerWidth*0.8);
-    console.log(`팝업 위치: left=\${left}, top=\${top}`);
+	<script>
+		document
+				.getElementById("open-popup")
+				.addEventListener(
+						"click",
+						function() {
+							const popupWidth = Math.min(
+									window.innerWidth * 0.8, 1500);
+							const popupHeight = Math.min(
+									window.innerHeight * 0.8, 1500);
+							const left = window.screenX
+									+ (window.innerWidth - popupWidth) / 2;
+							const top = window.screenY
+									+ (window.innerHeight - popupHeight) / 2;
+							console.log(window.innerWidth * 0.8);
+							console.log(`팝업 위치: left=\${left}, top=\${top}`);
 
-    const popup = window.open(
-        "<c:url value='/resources/toss/checkout.jsp' />",
-        "결제 페이지",
-        `width=\${popupWidth},height=\${popupHeight},top=\${top},left=\${left},resizable=yes`
-    );
+							const popup = window
+									.open(
+											"<c:url value='/resources/toss/checkout.jsp' />",
+											"결제 페이지",
+											`width=\${popupWidth},height=\${popupHeight},top=\${top},left=\${left},resizable=yes`);
 
-    if (!popup) {
-        alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
-    }
-});
-</script>
+							if (!popup) {
+								alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
+							}
+						});
+	</script>
 
 
 </body>

@@ -5,4 +5,16 @@
 
 <mapper namespace="com.shinhan.orderItem">
 
+	<select id="selectByOrderId" parameterType="int" resultType="map">
+
+
+		select * from order_items   join orders using (order_id)
+									join arts using(art_id)
+									join members on(members.member_id = orders.member_ID)
+									join mini_categories using (mini_category_ID)
+                          			join categories using (category_ID)
+									where order_id =#{aa}
+									
+	</select>
+
 </mapper>
