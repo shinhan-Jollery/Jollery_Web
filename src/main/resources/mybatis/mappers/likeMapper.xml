@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinhan.like">
+	<!-- 좋아요 추가 (중복 방지) -->
+	<insert id="insertLike" parameterType="com.shinhan.VO.LikesDTO">
+		INSERT IGNORE INTO likes
+		(member_id, art_id)
+		VALUES (#{member_id}, #{art_id});
+	</insert>
+
+	<!-- 좋아요 제거 -->
+	<delete id="deleteLike" parameterType="com.shinhan.VO.LikesDTO">
+		DELETE FROM likes
+		WHERE
+		member_id = #{member_id} AND art_id = #{art_id};
+	</delete>
+
+	<select id="selectLike" parameterType="com.shinhan.VO.LikesDTO" resultType="int">
+		SELECT COUNT(*)
+		from likes
+		where
+		member_id = #{member_id} and art_id = #{art_id};
+	</select>
+
+	<select id="getLikedArts" resultType="com.shinhan.VO.ArtsDTO">
+		SELECT a.art_id,
+		a.mini_category_id, a.art_title, a.art_price,
+		a.art_description, a.art_status, a.art_like, a.art_view,
+		a.art_post_date, a.art_size, a.art_thumbnail_image, a.member_id
+		FROM arts a
+		JOIN likes l ON a.art_id = l.art_id
+		WHERE l.member_id = #{member_id};
+	</select>
+	
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinhan.member">
+	<!-- 회원가입  -->
+    <insert id="insertMember" parameterType="com.shinhan.VO.MembersDTO">
+        INSERT INTO members (
+            member_login_id,
+            member_password,
+            member_name,
+            member_birth,
+            member_phone,
+            member_address,
+            member_email,
+            member_is_artist
+        ) VALUES (
+            #{member_login_id},
+            #{member_password},
+            #{member_name},
+            #{member_birth},
+            #{member_phone},
+            #{member_address},
+            #{member_email},
+            '0'
+        )
+    </insert>
+
+    <!-- 단일 회원 조회 -->
+    <select id="selectMemberById" parameterType="string" resultType="com.shinhan.VO.MembersDTO">
+        SELECT * 
+        FROM members 
+        WHERE member_login_ID = #{member_login_ID}
+    </select>
+
+    <!-- 모든 회원 조회 -->
+    <select id="selectAllMembers" resultType="com.shinhan.VO.MembersDTO">
+        SELECT * 
+        FROM members
+    </select>
+
+    <!-- 멤버 id로 회원 조회 -->
+    <select id="selectMemberInfo" parameterType="int" resultType="com.shinhan.VO.MembersDTO">
+        SELECT * 
+        FROM members 
+        WHERE member_id = #{member_ID}
+    </select>
+        <!-- 멤버 email로 회원 조회 -->
+    <select id="selectMemberByEmail" parameterType="string" resultType="com.shinhan.VO.MembersDTO">
+        SELECT * 
+        FROM members 
+        WHERE member_email = #{member_email}
+    </select>
+
+    <!--회원 정보 수정 null값이면 원래데이터유지 -->
+    <update id="updateMember" parameterType="com.shinhan.VO.MembersDTO">
+    UPDATE members
+    SET 
+        <if test="member_password != null">
+            member_password = #{member_password},
+        </if>
+        <if test="member_name != null">
+            member_name = #{member_name},
+        </if>
+        <if test="member_birth != null">
+            member_birth = #{member_birth},
+        </if>
+        <if test="member_phone != null">
+            member_phone = #{member_phone},
+        </if>
+        <if test="member_address != null">
+            member_address = #{member_address},
+        </if>
+        <if test="member_email != null">
+            member_email = #{member_email}
+        </if>
+    WHERE 
+        member_id = #{member_id}
+	</update>
+
+    <!--  회원 삭제  -->
+    <delete id="deleteMemberByid" parameterType="int">
+        DELETE FROM members
+        WHERE member_id = #{member_id}
+    </delete>
+    
+    <!-- 비밀번호 확인 쿼리 -->
+	<select id="checkPassword" parameterType="map" resultType="com.shinhan.VO.MembersDTO">
+	        SELECT *
+	        FROM members
+	        WHERE member_id = #{memberId}
+	          AND member_password = #{memberPassword}
+	</select>
+
+</mapper>

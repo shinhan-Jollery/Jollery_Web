@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinhan.account">
+
+    <select id="findByMemberId" resultType="com.shinhan.VO.AccountsDTO">
+        SELECT * FROM accounts WHERE member_id = #{memberId}
+    </select>
+
+    <insert id="insertAccount" parameterType="com.shinhan.VO.AccountsDTO">
+        INSERT INTO accounts (member_id, account_bank, account_number, account_register_date)
+        VALUES (#{member_id}, #{account_bank}, #{account_number}, NOW())
+    </insert>
+
+	<update id="updateAccount" parameterType="com.shinhan.VO.AccountsDTO">
+		UPDATE accounts
+		SET account_bank = #{account_bank},
+			account_number = #{account_number},
+			account_register_date = NOW()
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<delete id="deleteAccount" parameterType="int">
+		DELETE FROM accounts WHERE member_id = #{member_id}
+	</delete>
+</mapper>
