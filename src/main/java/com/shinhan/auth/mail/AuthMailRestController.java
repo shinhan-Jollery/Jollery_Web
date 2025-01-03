@@ -1,8 +1,12 @@
 package com.shinhan.auth.mail;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
+import com.shinhan.VO.MembersDTO;
+import com.shinhan.auth.AuthService;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,43 +14,40 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthMailRestController {
 
-    // 이메일 인증 코드 발송
-    @PostMapping("/sendEmail")
-    public Map<String, Object> sendEmail(@RequestBody Map<String, String> request) {
-        Map<String, Object> response = new HashMap<>();
-        String email = request.get("email");
+	@Autowired
+	AuthMailService authMailService;
+	@Autowired
+	AuthService authService;
 
-        try {
-            // 인증 코드 생성
-            String verificationCode = VerificationService.generateVerificationCode(email);
+	// 이름과 아이디로 이메일 찾아서 인증 코드 발송
+	@PostMapping("/sendMemberEmail")
+	public Map<String, Object> sendMemberEmail(@RequestBody Map<String, String> request) {
+		String member_name = request.get("membername");
+		String member_login_ID = request.get("memberid");
+		return authService.emailCheckerByLoginId_name(member_login_ID, member_name);
+	}
 
-            // 이메일 발송
-            MailDispatcher.sendMail(email, "이메일 인증 코드", "인증 코드: " + verificationCode);
+	// 이메일 인증 코드 발송
+	@PostMapping("/sendEmail")
+	public Map<String, Object> sendEmail(@RequestBody Map<String, String> request) {
+		String email = request.get("email");
+		return authMailService.sendEmail(email);
+	}
 
-            response.put("message", "인증 코드가 전송되었습니다.");
-            response.put("status", "success");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            response.put("message", "이메일 전송에 실패했습니다.");
-            response.put("status", "error");
-        }
-        return response;
-    }
+	// 인증 코드 확인
+	@PostMapping("/verifyCode")
+	public Map<String, Object> verifyCode(@RequestBody Map<String, String> request) {
+		String email = request.get("email");
+		String code = request.get("code");
+		return authMailService.verifyCode(email, code);
+	}
 
-    // 인증 코드 확인
-    @PostMapping("/verifyCode")
-    public Map<String, Object> verifyCode(@RequestBody Map<String, String> request) {
-        Map<String, Object> response = new HashMap<>();
-        String email = request.get("email");
-        String code = request.get("code");
-        System.out.println(code);
-        if (VerificationService.verifyCode(email, code)) {
-            response.put("message", "인증 성공!");
-            response.put("status", "success");
-        } else {
-            response.put("message", "인증 코드가 유효하지 않습니다.");
-            response.put("status", "error");
-        }
-        return response;
-    }
+	// 인증 코드 확인
+	@PostMapping("/MemberverifyCode")
+	public Map<String, Object> MemberverifyCode(@RequestBody Map<String, String> request) {
+		String member_name = request.get("membername");
+		String member_login_ID = request.get("memberid");
+		String code = request.get("code");
+		return authService.verifyByLoginId_name(member_login_ID, member_name, code);
+	}
 }
