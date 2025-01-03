@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.servletContext.contextPath}" />
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <link rel="stylesheet"
 	href="<c:url value='/resources/assets/css/vendor.css' />" />
 <link rel="stylesheet"
@@ -17,7 +19,7 @@
 	src="${pageContext.request.contextPath}/resources/se2/js/service/HuskyEZCreator.js"
 	src="${pageContext.request.contextPath}/resources/se2/js/service/SE2BasicCreator.js"
 	charset="utf-8"></script>
-	
+
 
 <title>Profile</title>
 <style>
@@ -274,33 +276,77 @@ input {
 									<div class="WritingHeader">
 										<h2 class="title">작품 등록</h2>
 										<div class="tool_area">
-											<a href="#" type="submit" role="button" class="BaseButton">등록</a>
+											<a onclick="artsubmit()" type="button" class="BaseButton">등록</a>
 										</div>
+										<script>
+										function artsubmit(){
+											// 입력값 가져오기
+										    const category = document.getElementById('category').value;
+										    const subcategory = document.getElementById('subcategory').value;
+										    const title = document.getElementById('title').value;
+										    const price = document.getElementById('price').value;
+										    const size = document.getElementById('size').value;
+										    
+										    //JSON 만들기
+										   	const artbody = {
+										    	
+										    		subcategory,
+										    		title,
+										    		price,
+										    		size
+										    };
+										    
+										    
+										   	fetch('/jollery/art/insert', {
+									            method: 'POST',
+									            headers: {
+									                'Content-Type': 'application/json',
+									            },
+									            body: JSON.stringify(artbody),
+									        })
+									            .then((response) => response.json()) // 상태 코드와 상관없이 JSON 파싱
+									            .then((data) => {
+									                console.log('서버 응답 데이터:', data);
+
+									                if (data.status === 'success') {
+									                    alert('인증이 완료되었습니다.');
+									                    // 다른 화면으로 이동
+									                    
+									                } else {
+									                    alert('인증에 실패했습니다. 다시 시도해주세요.');
+									                }
+									            })
+									            .catch((error) => {
+									                console.error('에러 발생:', error);
+									                alert('문제가 발생했습니다. 다시 시도해주세요.');
+									            });
+										    
+										}
+										</script>
 									</div>
 									<div class="WritingContent">
 										<form action="insert.do" method="post">
 											<div class="form-group category-row">
-												<select id="category">
-													<option value="">카테고리 선택</option>
-													<option value="painting">회화</option>
-													<option value="sculpture">조소</option>
-													<option value="craft">공예</option>
-													<option value="etc">기타</option>
-												</select> <select id="subcategory">
-													<option value="">상세 카테고리 선택</option>
-													<option value="oriental-painting">동양화</option>
-													<option value="western-painting">서양화</option>
-													<option value="engraving">판화</option>
-													<option value="mixing materials">혼합재료</option>
+												<select onchange="mini(this)" required="required"
+													id="category" name="categories">
+													<option value="-1">카테고리 선택</option>
+													<c:forEach var="category" items="${categories}">
+														<option value="${category.category_id}">${category.category_type}</option>
+													</c:forEach>
+												</select> <select required="required" id="subcategory"
+													name="minicategories">
+													<option value="-1">상세 카테고리 선택</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<input type="text" id="title" placeholder="제목을 입력해 주세요.">
+												<input type="text" required="required" id="title"
+													placeholder="제목을 입력해 주세요.">
 											</div>
 											<div class="form-group price-and-size">
 												<div class="price-wrapper">
-													<input type="number" id="price" placeholder="가격을 입력해 주세요."
-														min="0"> <span class="suffix">원</span>
+													<input type="number" required="required" id="price"
+														placeholder="가격을 입력해 주세요." min="0"> <span
+														class="suffix">원</span>
 												</div>
 												<div class="size-wrapper">
 													<input type="text" id="size" placeholder="크기를 입력해 주세요.">
@@ -516,6 +562,7 @@ input {
 		function aa() {
 			/* alert("aa"); */
 			var oEditors = [];
+			console.log("스마트에디터 초기화 시작");
 			nhn.husky.EZCreator
 					.createInIFrame({
 						oAppRef : oEditors,
@@ -523,7 +570,41 @@ input {
 						sSkinURI : "${pageContext.request.contextPath}/resources/se2/SmartEditor2Skin.html",
 						fCreator : "createSEditor2"
 					});
+			console.log("스마트에디터 초기화 완료");
 		}
+		
+		function mini(selectElement) {
+		        const categoryId = $(selectElement).val(); // 선택된 카테고리 ID 가져오기
+				console.log('1', categoryId);
+		        // 대분류가 선택되지 않았을 경우 초기화
+		        if (categoryId === "-1") {
+		            $('#subcategory').html('<option value="-1">상세 카테고리 선택</option>');
+		            return;
+		        }
+
+		        // Ajax 요청
+		        $.ajax({
+		            url: '${path}/art/api/insert', // RestController에서 매핑된 URL
+		            type: 'GET',
+		            data: { category_id: categoryId }, // 선택된 category_id 전달
+		            success: function(response) {
+		            	console.log(response);
+		                // 상세 카테고리 초기화
+		               $('#subcategory').html('<option value="-1">상세 카테고리 선택</option>');
+
+		                // 상세 카테고리 추가
+		                response.forEach(function(subCategory) {
+		                    $('#subcategory').append(
+		                        `<option value="\${subCategory.mini_category_id}">\${subCategory.mini_category_type}</option>`
+		                    );
+		                });
+		            },
+		            error: function() {
+		                alert('상세 카테고리를 불러오는 중 문제가 발생했습니다.');
+		            }
+		        });
+		}
+		
 	</script>
 
 </body>

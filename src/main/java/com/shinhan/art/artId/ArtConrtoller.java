@@ -1,9 +1,15 @@
 package com.shinhan.art.artId;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.shinhan.VO.CategoriesDTO;
+import com.shinhan.VO.MiniCategoriesDTO;
 
 //@RestController
 @Controller
@@ -12,9 +18,12 @@ public class ArtConrtoller {
 
 	@Autowired
 	ArtService artService;
-
+	
 	@GetMapping(value = "/art/insert")
-	public String insertPage() {
+	public String insertPage(Model model) {
+        List<CategoriesDTO> categories = artService.selectAllCategoryService();
+        System.out.println(categories);
+        model.addAttribute("categories", categories);
 		return "art/artInsert";
 	}
 

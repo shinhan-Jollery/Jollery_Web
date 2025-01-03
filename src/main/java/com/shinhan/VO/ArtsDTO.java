@@ -18,16 +18,16 @@ import lombok.ToString;
 
 // 17°³ Ä®·³ 
 public class ArtsDTO {
-	int art_id;
-	int member_id;
-	int mini_category_id;
+	int art_ID;
+	int member_ID;
+	int mini_category_ID;
 	String art_title;
 	int art_price;
 	String art_description;
 	String art_status;
 	int art_like;
 	int art_view;
-	LocalDateTime art_post_date;
+//	LocalDateTime art_post_date;
 	String art_size;
 	String art_thumbnail_image;
 	String art_hovering_image;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스마트에디터 테스트</title>
+    <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
+</head>
+<body>
+    <textarea id="ir1" rows="10" cols="100"></textarea>
+    <script>
+        var oEditors = [];
+        nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors,
+            elPlaceHolder: "ir1",
+            sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+            fCreator: "createSEditor2"
+        });
+    </script>
+</body>
+</html>
