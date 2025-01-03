@@ -37,6 +37,28 @@ public class AuthMailRestController {
 		String email = request.get("email");
 		return authMailService.sendEmail(email);
 	}
+	// 이름으로 확인 후 메일 발송
+	//서비스로 분리해야해! 일단 미루기
+	@PostMapping("/sendMemberEmailbyName")
+	public Map<String, Object> sendMemberEmailbyName(@RequestBody Map<String, String> request) {
+		String email = request.get("email");
+		String member_name = request.get("membername");
+		MembersDTO member = authService.getMemberPWByEmail(email);
+		if (member==null) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("message", "email이 유효하지 않습니다.");
+			response.put("status", "error");
+			return response;
+		}
+		if(member.getMember_name().equals(member_name)) {
+			return authMailService.sendEmail(email);
+		} else {
+			Map<String, Object> response = new HashMap<>();
+			response.put("message", "이름과 email이 일치하지 않습니다.");
+			response.put("status", "error");
+			return response;
+		}
+	}
 
 	// 인증 코드 확인
 	@PostMapping("/verifyCode")
@@ -45,6 +67,16 @@ public class AuthMailRestController {
 		String code = request.get("code");
 		return authMailService.verifyCode(email, code);
 	}
+	// 인증 코드 확인
+	 @PostMapping("/verifyandSendId")
+	    public Map<String, Object> verifyandSendId(@RequestBody Map<String, String> request) {
+	        String memberName = request.get("membername");
+	        String email = request.get("email");
+	        String code = request.get("code");
+
+	        // 서비스 호출
+	        return authMailService.verifyAndSendId(memberName, email, code);
+	    }
 
 	// 인증 코드 확인
 	@PostMapping("/MemberverifyCode")
