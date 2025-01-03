@@ -97,8 +97,8 @@
 									<div class="form-group">
 										<label for="password">비밀번호</label> <input type="password"
 											class="form-control" id="password" name="password" required>
-									</div>
-									<button type="submit" class="btn btn-primary"
+									</div><br>
+									<button type="submit" class="btn btn-light"
 										id="submitPasswordCheck">확인</button>
 								</form>
 								<div id="passwordCheckError" style="display: none; color: red;">비밀번호가
@@ -183,6 +183,7 @@
 				                document.getElementById("username").value = profile.member_id;
 				                document.getElementById("name").value = profile.member_name;
 				                document.getElementById("address-line1").value = profile.member_address;
+				                document.getElementById("address-line2").value = profile.member_address_detail;
 				                
 				                const timestamp = profile.member_birth; // 서버에서 넘어온 타임스탬프
 				                const date = new Date(timestamp); // 타임스탬프를 Date 객체로 변환
@@ -353,7 +354,8 @@
 									                member_name: getValue('name'),
 									                member_birth: getValue('birthdate'),
 									                member_phone: phone,
-									                member_address: getValue('address'),
+									                member_address: getValue('address-line1'),
+									                member_address_detail:getValue('address-line2'),
 									                member_email: email
 									            };
 									

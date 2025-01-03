@@ -80,7 +80,7 @@
 												<div class="card">
 													<!-- 카테고리 -->
 													<div class="card-header text-left">
-														${art.category_id}</div>
+														${art.mini_category_id}</div>
 
 													<!-- 작가 이름 -->
 													<div class="card-body text-left">

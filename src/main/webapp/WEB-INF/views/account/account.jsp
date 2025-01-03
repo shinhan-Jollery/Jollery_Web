@@ -68,13 +68,13 @@
 					<div class="nav nav-pills flex-column lavalamp" role="tablist">
 						<a class="nav-link" href="/jollery/auth/infoUpdate" role="tab"
 							aria-controls="sidebar-1" aria-selected="false">회원정보</a> <a
-							class="nav-link" data-toggle="tab" href="#sidebar-1-2" role="tab"
+							class="nav-link" data-toggle="tab" href="/jollery/order/list" role="tab"
 							aria-controls="sidebar-1-2" aria-selected="false">주문 내역</a> <a
-							class="nav-link" href="/jollery/like.do" role="tab"
+							class="nav-link" href="/jollery/like" role="tab"
 							aria-controls="sidebar-1-3" aria-selected="false">관심 상품</a> <a
 							class="nav-link" data-toggle="tab" href="#sidebar-1-4" role="tab"
 							aria-controls="sidebar-1-4" aria-selected="false">작품 등록</a> <a
-							class="nav-link" data-toggle="tab" href="#sidebar-1-5" role="tab"
+							class="nav-link" data-toggle="tab" href="/jollery/saleList" role="tab"
 							aria-controls="sidebar-1-5" aria-selected="false">판매 내역</a> <a
 							class="nav-link" href="/jollery/auth/account" role="tab"
 							aria-controls="sidebar-1-6" aria-selected="false">정산</a>
