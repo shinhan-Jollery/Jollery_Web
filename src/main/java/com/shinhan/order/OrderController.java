@@ -32,7 +32,7 @@ public class OrderController {
 
         List<Map<String, Object>> orderWithArts = orderListService.selectOrderList(userId);
         
-        // 데이터를 나누어서 List로 변환
+        
         for (Map<String, Object> order : orderWithArts) {
             String[] artTitle = ((String) order.get("art_title")).split(",");
             String[] artStatus = ((String) order.get("art_status")).split(",");

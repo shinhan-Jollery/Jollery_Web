@@ -72,6 +72,9 @@
         <if test="member_address != null">
             member_address = #{member_address},
         </if>
+        <if test="member_address_detail !=null">
+        	member_address_detail = #{member_address_detail},
+        </if>
         <if test="member_email != null">
             member_email = #{member_email}
         </if>
